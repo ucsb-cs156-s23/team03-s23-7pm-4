@@ -1,9 +1,4 @@
-# STARTER-team03
-
-```
-TODO: Adjust the link to the deployed production app 
-for your team here, then remove this TODO.
-```
+# team03-s23-7pm-4
 
 * Production: <https://team03-prod.dokku-12.cs.ucsb.edu>
 
