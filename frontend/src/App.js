@@ -14,6 +14,9 @@ import UCSBDatesEditPage from "main/pages/UCSBDates/UCSBDatesEditPage";
 import HotelCreatePage from "main/pages/Hotels/HotelCreatePage";
 import HotelEditPage from "main/pages/Hotels/HotelEditPage";
 import HotelIndexPage from "main/pages/Hotels/HotelIndexPage";
+import HotelDetailsPage from "main/pages/Hotels/HotelDetailsPage";
+
+
 
 
 import { hasRole, useCurrentUser } from "main/utils/currentUser";
