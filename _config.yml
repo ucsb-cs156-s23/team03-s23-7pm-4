@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-s23/team03-s23-7pm-4
 owner: ucsb-cs156-s23
 repo_name: team03-s23-7pm-4
-pull_requests: [{"author":{"id":"MDQ6VXNlcjc3NzA5MDM1","is_bot":false,"login":"nieb100","name":"ethan nguyen"},"headRefName":"Ethan-restaurantFrontEnd","number":16,"title":"en - added CRUD files for Restaurant from team01","url":"https://github.com/ucsb-cs156-s23/team03-s23-7pm-4/pull/16"},{"author":{"id":"MDQ6VXNlcjc4NTg0NzYz","is_bot":false,"login":"kkwen123","name":"Kaiwen Tang"},"headRefName":"Kaiwen-RestaurantController","number":15,"title":"KT - added files for the Restaurant controller","url":"https://github.com/ucsb-cs156-s23/team03-s23-7pm-4/pull/15"}]
+pull_requests: [{"author":{"id":"MDQ6VXNlcjc3NzA5MDM1","is_bot":false,"login":"nieb100","name":"ethan nguyen"},"headRefName":"Ethan-restaurantFrontEnd","number":16,"title":"en - added CRUD files for Restaurant from team01","url":"https://github.com/ucsb-cs156-s23/team03-s23-7pm-4/pull/16"}]
