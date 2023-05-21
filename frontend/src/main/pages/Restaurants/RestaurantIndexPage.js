@@ -17,7 +17,7 @@ export default function RestaurantIndexPage() {
     const deleteCallback = async (cell) => {
         console.log(`RestaurantIndexPage deleteCallback: ${showCell(cell)})`);
         restaurantUtils.del(cell.row.values.id);
-        navigate("/restaurants");
+        navigate("/restaurants/list");
     }
 
     return (

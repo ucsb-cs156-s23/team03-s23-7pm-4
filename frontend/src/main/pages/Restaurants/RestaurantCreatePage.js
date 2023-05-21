@@ -10,7 +10,7 @@ export default function RestaurantCreatePage() {
   const onSubmit = async (restaurant) => {
     const createdRestaurant = restaurantUtils.add(restaurant);
     console.log("createdRestaurant: " + JSON.stringify(createdRestaurant));
-    navigate("/restaurants");
+    navigate("/restaurants/list");
   }  
 
   return (

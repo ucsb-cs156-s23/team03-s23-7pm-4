@@ -16,7 +16,7 @@ export default function RestaurantEditPage() {
     const onSubmit = async (restaurant) => {
         const updatedRestaurant = restaurantUtils.update(restaurant);
         console.log("updatedRestaurant: " + JSON.stringify(updatedRestaurant));
-        navigate("/restaurants");
+        navigate("/restaurants/list");
     }  
 
     return (
