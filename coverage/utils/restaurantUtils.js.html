@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for utils/movieUtils.js</title>
+    <title>Code coverage report for utils/restaurantUtils.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">utils</a> movieUtils.js</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">utils</a> restaurantUtils.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -247,87 +247,87 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// get movies from local storage
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// get restaurants from local storage
 const get = () =&gt; {
-    const movieValue = localStorage.getItem("movies");
-    if (movieValue === undefined) {
-        const movieCollection = { nextId: 1, movies: [] }
-        return set(movieCollection);
+    const restaurantValue = localStorage.getItem("restaurants");
+    if (restaurantValue === undefined) {
+        const restaurantCollection = { nextId: 1, restaurants: [] }
+        return set(restaurantCollection);
     }
-    const movieCollection = JSON.parse(movieValue);
-    if (movieCollection === null) {
-        const movieCollection = { nextId: 1, movies: [] }
-        return set(movieCollection);
+    const restaurantCollection = JSON.parse(restaurantValue);
+    if (restaurantCollection === null) {
+        const restaurantCollection = { nextId: 1, restaurants: [] }
+        return set(restaurantCollection);
     }
-    return movieCollection;
+    return restaurantCollection;
 };
 &nbsp;
 const getById = (id) =&gt; {
     if (id === undefined) {
         return { "error": "id is a required parameter" };
     }
-    const movieCollection = get();
-    const movies = movieCollection.movies;
+    const restaurantCollection = get();
+    const restaurants = restaurantCollection.restaurants;
 &nbsp;
     /* eslint-disable-next-line eqeqeq */ // we really do want == here, not ===
-    const index = movies.findIndex((r) =&gt; r.id == id);
+    const index = restaurants.findIndex((r) =&gt; r.id == id);
     if (index === -1) {
-        return { "error": `movie with id ${id} not found` };
+        return { "error": `restaurant with id ${id} not found` };
     }
-    return { movie: movies[index] };
+    return { restaurant: restaurants[index] };
 }
 &nbsp;
-// set movies in local storage
-const set = (movieCollection) =&gt; {
-    localStorage.setItem("movies", JSON.stringify(movieCollection));
-    return movieCollection;
+// set restaurants in local storage
+const set = (restaurantCollection) =&gt; {
+    localStorage.setItem("restaurants", JSON.stringify(restaurantCollection));
+    return restaurantCollection;
 };
 &nbsp;
-// add a movie to local storage
-const add = (movie) =&gt; {
-    const movieCollection = get();
-    movie = { ...movie, id: movieCollection.nextId };
-    movieCollection.nextId++;
-    movieCollection.movies.push(movie);
-    set(movieCollection);
-    return movie;
+// add a restaurant to local storage
+const add = (restaurant) =&gt; {
+    const restaurantCollection = get();
+    restaurant = { ...restaurant, id: restaurantCollection.nextId };
+    restaurantCollection.nextId++;
+    restaurantCollection.restaurants.push(restaurant);
+    set(restaurantCollection);
+    return restaurant;
 };
 &nbsp;
-// update a movie in local storage
-const update = (movie) =&gt; {
-    const movieCollection = get();
+// update a restaurant in local storage
+const update = (restaurant) =&gt; {
+    const restaurantCollection = get();
 &nbsp;
-    const movies = movieCollection.movies;
+    const restaurants = restaurantCollection.restaurants;
 &nbsp;
     /* eslint-disable-next-line eqeqeq */ // we really do want == here, not ===
-    const index = movies.findIndex((r) =&gt; r.id == movie.id);
+    const index = restaurants.findIndex((r) =&gt; r.id == restaurant.id);
     if (index === -1) {
-        return { "error": `movie with id ${movie.id} not found` };
+        return { "error": `restaurant with id ${restaurant.id} not found` };
     }
-    movies[index] = movie;
-    set(movieCollection);
-    return { movieCollection: movieCollection };
+    restaurants[index] = restaurant;
+    set(restaurantCollection);
+    return { restaurantCollection: restaurantCollection };
 };
 &nbsp;
-// delete a movie from local storage
+// delete a restaurant from local storage
 const del = (id) =&gt; {
     if (id === undefined) {
         return { "error": "id is a required parameter" };
     }
-    const movieCollection = get();
-    const movies = movieCollection.movies;
+    const restaurantCollection = get();
+    const restaurants = restaurantCollection.restaurants;
 &nbsp;
     /* eslint-disable-next-line eqeqeq */ // we really do want == here, not ===
-    const index = movies.findIndex((r) =&gt; r.id == id);
+    const index = restaurants.findIndex((r) =&gt; r.id == id);
     if (index === -1) {
-        return { "error": `movie with id ${id} not found` };
+        return { "error": `restaurant with id ${id} not found` };
     }
-    movies.splice(index, 1);
-    set(movieCollection);
-    return { movieCollection: movieCollection };
+    restaurants.splice(index, 1);
+    set(restaurantCollection);
+    return { restaurantCollection: restaurantCollection };
 };
 &nbsp;
-const movieUtils = {
+const restaurantUtils = {
     get,
     getById,
     add,
@@ -335,7 +335,7 @@ const movieUtils = {
     del
 };
 &nbsp;
-export { movieUtils };
+export { restaurantUtils };
 &nbsp;
 &nbsp;
 &nbsp;
@@ -346,7 +346,7 @@ export { movieUtils };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Mon May 22 2023 14:31:52 GMT-0700 (Pacific Daylight Time)
+                at Mon May 22 2023 15:25:37 GMT-0700 (Pacific Daylight Time)
             </div>
         <script src="../prettify.js"></script>
         <script>
