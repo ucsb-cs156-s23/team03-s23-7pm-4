@@ -9,7 +9,7 @@ export default function RestaurantIndexPage() {
 
   const currentUser = useCurrentUser();
 
-  const { data: dates, error: _error, status: _status } =
+  const { data: restaurants, error: _error, status: _status } =
     useBackend(
       // Stryker disable next-line all : don't test internal caching of React Query
       ["/api/restaurants/all"],
