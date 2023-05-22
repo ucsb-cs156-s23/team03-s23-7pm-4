@@ -39,7 +39,7 @@ jest.mock('main/utils/restaurantUtils', () => {
 
 
 describe("RestaurantEditPage tests", () => {
-    
+
     const axiosMock =new AxiosMockAdapter(axios);
     axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
     axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
@@ -71,7 +71,7 @@ describe("RestaurantEditPage tests", () => {
         expect(screen.getByDisplayValue('Burritos')).toBeInTheDocument();
     });
 
-    test("redirects to /restaurants on submit", async () => {
+    test("redirects to /restaurants/list on submit", async () => {
 
         const restoreConsole = mockConsole();
 
@@ -108,7 +108,7 @@ describe("RestaurantEditPage tests", () => {
         });
 
         await waitFor(() => expect(mockUpdate).toHaveBeenCalled());
-        await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/restaurants"));
+        await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/restaurants/list"));
 
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
