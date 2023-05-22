@@ -27,7 +27,7 @@ export default function RestaurantEditPage() {
         url: "/api/restaurants",
         method: "PUT",
         params: {
-          id: restaurant.id,
+          id:id
         },
         data: {
           name: restaurant.name,
