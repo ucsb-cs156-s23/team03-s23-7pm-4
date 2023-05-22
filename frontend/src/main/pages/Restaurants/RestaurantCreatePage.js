@@ -11,7 +11,8 @@ export default function RestaurantsCreatePage() {
     method: "POST",
     params: {
       name: restaurant.name,
-      description: restaurant.description
+      description: restaurant.description,
+      price: "1"
     }
   });
 
