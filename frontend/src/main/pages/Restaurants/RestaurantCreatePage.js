@@ -23,7 +23,7 @@ export default function RestaurantsCreatePage() {
     objectToAxiosParams,
      { onSuccess }, 
      // Stryker disable next-line all : hard to set up test for caching
-     ["/api/restaurant/all"]
+     ["/api/restaurants/all"]
      );
 
   const { isSuccess } = mutation
@@ -33,7 +33,7 @@ export default function RestaurantsCreatePage() {
   }
 
   if (isSuccess) {
-    return <Navigate to="/restaurant/list" />
+    return <Navigate to="/restaurants/list" />
   }
 
   return (
