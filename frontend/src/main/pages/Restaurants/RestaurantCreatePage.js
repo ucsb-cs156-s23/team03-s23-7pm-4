@@ -12,7 +12,7 @@ export default function RestaurantsCreatePage() {
     params: {
       name: restaurant.name,
       description: restaurant.description,
-      price: "1"
+      price: restaurant.price
     }
   });
 

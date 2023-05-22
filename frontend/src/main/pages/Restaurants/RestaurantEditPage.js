@@ -32,6 +32,7 @@ export default function RestaurantEditPage() {
         data: {
           name: restaurant.name,
           description: restaurant.description,
+          price: restaurant.price
         }
       }); 
 
