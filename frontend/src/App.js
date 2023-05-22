@@ -62,17 +62,12 @@ function App() {
           )
         }
         {
-          hasRole(currentUser, "ROLE_USER") && (
-            <>
-              <Route exact path="/hotels/" element={<HotelIndexPage />} />
-            </>
-          )
-        }
-        {
           hasRole(currentUser, "ROLE_ADMIN") && (
             <>
               <Route exact path="/hotels/create" element={<HotelCreatePage />} />
               <Route exact path="/hotels/edit/:id" element={<HotelEditPage />} />
+              <Route exact path="/hotels/list" element={<HotelIndexPage />} />
+              <Route exact path="/hotels/details/:id" element={<HotelDetailsPage />} />
             </>
           )
         }
