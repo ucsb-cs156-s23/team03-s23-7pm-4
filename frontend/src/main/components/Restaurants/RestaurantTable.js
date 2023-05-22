@@ -38,6 +38,10 @@ export default function RestaurantTable({ restaurants, currentUser }) {
         {
             Header: 'Description',
             accessor: 'description',
+        },
+        {
+            Header: 'Price',
+            accessor: 'price',
         }
     ];
 
