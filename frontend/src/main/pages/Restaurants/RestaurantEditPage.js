@@ -60,9 +60,11 @@ export default function RestaurantEditPage() {
     return (
         <BasicLayout>
             <div className="pt-2">
-                <h1>Edit Restaurant</h1>
-                <RestaurantForm submitAction={onSubmit} buttonLabel={"Update"} initialContents={response.restaurant}/>
-            </div>
+              <h1>Edit Restaurant</h1>
+              {restaurant &&
+                <RestaurantForm initialRestaurant={restaurant} submitAction={onSubmit} buttonLabel="Update" />
+              }
+        </div>
         </BasicLayout>
     )
 }
