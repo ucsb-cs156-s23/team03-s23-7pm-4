@@ -1,20 +1,21 @@
+import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import { useParams } from "react-router-dom";
-import RestaurantTable from 'main/components/Restaurants/RestaurantTable';
-import { restaurantUtils } from 'main/utils/restaurantUtils';
+import MovieTable from 'main/components/Movies/MovieTable';
+import { movieUtils } from 'main/utils/movieUtils';
 import { useCurrentUser } from 'main/utils/currentUser'
 import { useBackend } from 'main/utils/useBackend';
 
-export default function RestaurantDetailsPage() {
+export default function MovieDetailsPage() {
   let { id } = useParams();
   const currentUser = useCurrentUser();
 
-  const { data: restaurant, error, status } =
+  const { data: movie, error, status } =
     useBackend(
       // Stryker disable next-line all : don't test internal caching of React Query
-      [`/api/restaurants?id=${id}`],
+      [`/api/movies?id=${id}`],
       {  // Stryker disable next-line all : GET is the default, so changing this to "" doesn't introduce a bug
         method: "GET",
-        url: `/api/restaurants`,
+        url: `/api/movies`,
         params: {
           id
         }
@@ -24,8 +25,8 @@ export default function RestaurantDetailsPage() {
     return (
       <BasicLayout>
         <div className="pt-2">
-          <h1>Restaurant Details</h1>
-          <RestaurantTable restaurants={[restaurant || {}]} currentUser={currentUser} showButtons={false} />
+          <h1>Movie Details</h1>
+          <MovieTable movies={[movie || {}]} currentUser={currentUser} showButtons={false} />
       </div>
     </BasicLayout>
   )
