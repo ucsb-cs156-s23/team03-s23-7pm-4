@@ -26,7 +26,7 @@ export default function MoviesEditPage() {
     url: "/api/movies",
     method: "PUT",
     params: {
-      id: movie.id,
+      id:id,
     },
     data: {
       name: movie.name,
