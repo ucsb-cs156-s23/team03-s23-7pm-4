@@ -11,8 +11,8 @@ export default function HotelCreatePage() {
     method: "POST",
     params: {
       name: hotel.name,
-      description: hotel.address,
-      address: hotel.description
+      address: hotel.address,
+      description: hotel.description
     }
   });
 

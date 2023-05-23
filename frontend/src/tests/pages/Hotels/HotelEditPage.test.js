@@ -159,7 +159,7 @@ describe("HotelEditPage tests", () => {
 
             await waitFor(() => expect(mockToast).toBeCalled);
             expect(mockToast).toBeCalledWith("Hotel Updated - id: 17 name: The Leta Hotel");
-            expect(mockNavigate).toBeCalledWith({ "to": "/hotels/list" });
+            expect(mockNavigate).toBeCalledWith({ "to": "/hotels/" });
 
             expect(axiosMock.history.put.length).toBe(1); // times called
             expect(axiosMock.history.put[0].params).toEqual({ id: 17 });

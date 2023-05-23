@@ -62,7 +62,7 @@ describe("UserTable tests", () => {
     const { getByText, getByTestId } = render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <HotelTable hotels={hotelsFixtures.threeHotels} currentUser={currentUser} />
+          <HotelTable hotels={hotelFixtures.threeHotels} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
@@ -82,8 +82,8 @@ describe("UserTable tests", () => {
       expect(header).toBeInTheDocument();
     });
 
-    expect(getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("1");
-    expect(getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("2");
+    expect(getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
+    expect(getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
 
     const editButton = getByTestId(`${testId}-cell-row-0-col-Edit-button`);
     expect(editButton).toBeInTheDocument();
@@ -102,20 +102,20 @@ describe("UserTable tests", () => {
     const { getByText, getByTestId } = render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <HotelTable hotels={hotelsFixtures.threeHotels} currentUser={currentUser} />
+          <HotelTable hotels={hotelFixtures.threeHotels} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
     );
 
-    await waitFor(() => { expect(getByTestId(`HotelTable-cell-row-0-col-id`)).toHaveTextContent("1"); });
+    await waitFor(() => { expect(getByTestId(`HotelTable-cell-row-0-col-id`)).toHaveTextContent("2"); });
 
     const editButton = getByTestId(`HotelTable-cell-row-0-col-Edit-button`);
     expect(editButton).toBeInTheDocument();
     
     fireEvent.click(editButton);
 
-    await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/hotels/edit/1'));
+    await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/hotels/edit/2'));
 
   });
 

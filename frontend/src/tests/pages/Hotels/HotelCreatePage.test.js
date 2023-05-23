@@ -97,7 +97,7 @@ describe("HotelCreatePage tests", () => {
         });
 
         expect(mockToast).toBeCalledWith("New hotel Created - id: 17 name: The Ritz-Carlton");
-        expect(mockNavigate).toBeCalledWith({ "to": "/hotels/list" });
+        expect(mockNavigate).toBeCalledWith({ "to": "/hotels/" });
     });
 
 

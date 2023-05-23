@@ -30,8 +30,8 @@ export default function HotelEditPage() {
     },
     data: {
       name: hotel.name,
-      description: hotel.address,
-      address: hotel.description
+      address: hotel.address,
+      description: hotel.description
     }
   });
 
