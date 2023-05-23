@@ -18,7 +18,7 @@ export default function RestaurantEditPage() {
         method: "GET",
         url: `/api/restaurants`,
         params: {
-          id
+          id:id
         }
       }
     );
@@ -63,7 +63,7 @@ export default function RestaurantEditPage() {
             <div className="pt-2">
               <h1>Edit Restaurant</h1>
               {restaurant &&
-                <RestaurantForm initialRestaurant={restaurant} submitAction={onSubmit} buttonLabel="Update" />
+                <RestaurantForm initialContents={restaurant} submitAction={onSubmit} buttonLabel="Update" />
               }
         </div>
         </BasicLayout>

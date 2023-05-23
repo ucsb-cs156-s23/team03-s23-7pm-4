@@ -79,13 +79,13 @@ function RestaurantForm({ initialContents, submitAction, buttonLabel = "Create" 
                     data-testid={testIdPrefix + "-price"}
                     id="price"
                     type="text"
-                    isInvalid={Boolean(errors.description)}
+                    isInvalid={Boolean(errors.price)}
                     {...register("price", {
                         required: "Price is required."
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
-                    {errors.description?.message}
+                    {errors.price?.message}
                 </Form.Control.Feedback>
             </Form.Group>
 

@@ -77,13 +77,13 @@ describe("RestaurantEditPage tests", () => {
             axiosMock.onGet("/api/restaurants", { params: { id: 17 } }).reply(200, {
                 id: 17,
                 name: 'Freebirds',
-                description: "Burritos and Nachos",
+                description: "Burritos and nachos",
                 price: "$$"
             });
             axiosMock.onPut('/api/restaurants').reply(200, {
                 id: "17",
                 name: 'Habit',
-                description: "Burgers and Fries",
+                description: "Burgers and fries",
                 price: "$"
             });
         });

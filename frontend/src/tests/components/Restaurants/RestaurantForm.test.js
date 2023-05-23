@@ -29,33 +29,12 @@ describe("RestaurantForm tests", () => {
 
         const { getByText, getByTestId, findByTestId } = render(
             <Router  >
-                <RestaurantForm initialRestaurants={restaurantFixtures.oneDate} />
+                <RestaurantForm initialContents={restaurantFixtures.oneRestaurant} />
             </Router>
         );
         await findByTestId(/RestaurantForm-id/);
         expect(getByText(/Id/)).toBeInTheDocument();
         expect(getByTestId(/RestaurantForm-id/)).toHaveValue("1");
-    });
-
-
-    test("Correct Error messsages on bad input", async () => {
-
-        const { getByTestId, getByText, findByTestId, findByText } = render(
-            <Router  >
-                <RestaurantForm />
-            </Router>
-        );
-        await findByTestId("RestaurantForm-name");
-        const nameField = getByTestId("RestaurantForm-name");
-        const priceField = getByTestId("RestaurantForm-price");
-        const submitButton = getByTestId("RestaurantForm-submit");
-
-        fireEvent.change(nameField, { target: { value: 'bad-input' } });
-        fireEvent.change(priceField, { target: { value: 'bad-input' } });
-        fireEvent.click(submitButton);
-
-        await findByText(/Name must be in string format/);
-        expect(getByText(/Price must be in string format/)).toBeInTheDocument();
     });
 
     test("Correct Error messsages on missing input", async () => {

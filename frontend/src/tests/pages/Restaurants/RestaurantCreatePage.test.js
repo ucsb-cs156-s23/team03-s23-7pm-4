@@ -55,7 +55,7 @@ describe("RestaurantCreatePage tests", () => {
         const queryClient = new QueryClient();
         const restaurant = {
             id: 17,
-            nameField: "Freebirds",
+            name: "Freebirds",
             description: "Burritos and nachos",
             price: "$$"
         };
@@ -71,7 +71,7 @@ describe("RestaurantCreatePage tests", () => {
         );
 
         await waitFor(() => {
-            expect(getByTestId("RestaurantForm-nameField")).toBeInTheDocument();
+            expect(getByTestId("RestaurantForm-name")).toBeInTheDocument();
         });
 
         const nameField = getByTestId("RestaurantForm-name");
