@@ -213,7 +213,6 @@ describe("AppNavbar tests", () => {
 
     });
     test("renders the restaurants menu correctly for a user", async () => {
-
         const currentUser = currentUserFixtures.userOnly;
         const systemInfo = systemInfoFixtures.showingBoth;
 
@@ -302,6 +301,50 @@ describe("AppNavbar tests", () => {
         aElement?.click();
         await findByTestId(/appnavbar-hotels-create/);
   });
+
+    test("renders the movies menu correctly for a user", async () => {
+        const currentUser = currentUserFixtures.userOnly;
+        const systemInfo = systemInfoFixtures.showingBoth;
+
+        const doLogin = jest.fn();
+
+        const {getByTestId, findByTestId  } = render(
+            <QueryClientProvider client={queryClient}>
+                <MemoryRouter>
+                    <AppNavbar currentUser={currentUser} systemInfo={systemInfo} doLogin={doLogin} />
+                </MemoryRouter>
+            </QueryClientProvider>
+        );
+        await findByTestId("appnavbar-movies-dropdown");
+        const dropdown = getByTestId("appnavbar-movies-dropdown");
+        const aElement = dropdown.querySelector("a");
+        expect(aElement).toBeInTheDocument();
+        aElement?.click();
+        await findByTestId("appnavbar-movies-list");
+
+    });
+
+    test("renders the movies menu correctly for an admin", async () => {
+        const currentUser = currentUserFixtures.adminUser;
+        const systemInfo = systemInfoFixtures.showingBoth;
+
+        const doLogin = jest.fn();
+
+        const {getByTestId, findByTestId  } = render(
+            <QueryClientProvider client={queryClient}>
+                <MemoryRouter>
+                    <AppNavbar currentUser={currentUser} systemInfo={systemInfo} doLogin={doLogin} />
+                </MemoryRouter>
+            </QueryClientProvider>
+        );
+        await findByTestId("appnavbar-movies-dropdown");
+        const dropdown = getByTestId("appnavbar-movies-dropdown");
+        const aElement = dropdown.querySelector("a");
+        expect(aElement).toBeInTheDocument();
+        aElement?.click();
+        await findByTestId(/appnavbar-movies-create/);
+
+    });
 });
 
 
