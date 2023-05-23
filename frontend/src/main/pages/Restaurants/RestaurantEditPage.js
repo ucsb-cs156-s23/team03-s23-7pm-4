@@ -18,7 +18,7 @@ export default function RestaurantEditPage() {
         method: "GET",
         url: `/api/restaurants`,
         params: {
-          id:id
+          id
         }
       }
     );

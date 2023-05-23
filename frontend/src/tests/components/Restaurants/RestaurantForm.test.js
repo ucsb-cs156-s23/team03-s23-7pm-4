@@ -29,7 +29,7 @@ describe("RestaurantForm tests", () => {
 
         const { getByText, getByTestId, findByTestId } = render(
             <Router  >
-                <RestaurantForm initialContents={restaurantFixtures.oneRestaurant} />
+                <RestaurantForm initialContents={restaurantFixtures.oneRestaurant[0]} />
             </Router>
         );
         await findByTestId(/RestaurantForm-id/);
