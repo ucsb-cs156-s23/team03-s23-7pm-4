@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 
 export default function RestaurantEditPage() {
     let { id } = useParams();
-
+  
     const { data: restaurant, error, status } =
     useBackend(
       // Stryker disable next-line all : don't test internal caching of React Query
