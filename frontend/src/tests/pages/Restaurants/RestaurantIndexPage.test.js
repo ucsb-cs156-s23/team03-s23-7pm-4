@@ -3,7 +3,6 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 import RestaurantIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
 
-
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import { restaurantFixtures } from "fixtures/restaurantFixtures";
