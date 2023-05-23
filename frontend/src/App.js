@@ -40,33 +40,23 @@ function App() {
               <Route exact path="/todos/list" element={<TodosIndexPage />} />
               <Route exact path="/todos/create" element={<TodosCreatePage />} />
               <Route exact path="/todos/edit/:todoId" element={<TodosEditPage />} />
+
+              <Route exact path="/ucsbdates/list" element={<UCSBDatesIndexPage />} />
+              
+              <Route exact path="/restaurants/details/:id" element={<RestaurantDetailsPage />} />
+              <Route exact path="/restaurants/list" element={<RestaurantIndexPage />} /> 
             </>
           )
         }
 
-        {
-          hasRole(currentUser, "ROLE_USER") && (
-            <>
-              <Route exact path="/ucsbdates/list" element={<UCSBDatesIndexPage />} />
-            </>
-          )
-        }
         {
           hasRole(currentUser, "ROLE_ADMIN") && (
             <>
               <Route exact path="/ucsbdates/edit/:id" element={<UCSBDatesEditPage />} />
               <Route exact path="/ucsbdates/create" element={<UCSBDatesCreatePage />} />
-            </>
-          )
-        }
 
-{
-          hasRole(currentUser, "ROLE_USER") && (
-            <>
               <Route exact path="/restaurants/create" element={<RestaurantCreatePage />} />
               <Route exact path="/restaurants/edit/:id" element={<RestaurantEditPage />} />
-              <Route exact path="/restaurants/details/:id" element={<RestaurantDetailsPage />} />
-              <Route exact path="/restaurants/list" element={<RestaurantIndexPage />} /> 
             </>
           )
         }
