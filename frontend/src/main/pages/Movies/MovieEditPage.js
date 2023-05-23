@@ -1,30 +1,69 @@
-
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import { useParams } from "react-router-dom";
-import { movieUtils }  from 'main/utils/movieUtils';
-import MovieForm from 'main/components/Movies/MovieForm';
-import { useNavigate } from 'react-router-dom'
+import MovieForm from "main/components/Movies/MovieForm";
+import { Navigate } from 'react-router-dom'
+import { useBackend, useBackendMutation } from "main/utils/useBackend";
+import { toast } from "react-toastify";
+
+export default function MoviesEditPage() {
+  let { id } = useParams();
+
+  const { data: movie, error, status } =
+    useBackend(
+      // Stryker disable next-line all : don't test internal caching of React Query
+      [`/api/movies?id=${id}`],
+      {  // Stryker disable next-line all : GET is the default, so changing this to "" doesn't introduce a bug
+        method: "GET",
+        url: `/api/movies`,
+        params: {
+          id
+        }
+      }
+    );
 
 
-export default function MovieEditPage() {
-    let { id } = useParams();
+  const objectToAxiosPutParams = (movie) => ({
+    url: "/api/movies",
+    method: "PUT",
+    params: {
+      id: movie.id,
+    },
+    data: {
+      name: movie.name,
+      year: movie.year,
+      summary: movie.summary
+    }
+  });
 
-    let navigate = useNavigate(); 
+  const onSuccess = (movie) => {
+    toast(`Movie Updated - id: ${movie.id} name: ${movie.name}`);
+  }
 
-    const response = movieUtils.getById(id);
+  const mutation = useBackendMutation(
+    objectToAxiosPutParams,
+    { onSuccess },
+    // Stryker disable next-line all : hard to set up test for caching
+    [`/api/movies?id=${id}`]
+  );
 
-    const onSubmit = async (movie) => {
-        const updatedMovie = movieUtils.update(movie);
-        console.log("updatedMovie: " + JSON.stringify(updatedMovie));
-        navigate("/movies/list");
-    }  
+  const { isSuccess } = mutation
 
-    return (
-        <BasicLayout>
-            <div className="pt-2">
-                <h1>Edit Movie</h1>
-                <MovieForm submitAction={onSubmit} buttonLabel={"Update"} initialContents={response.movie}/>
-            </div>
-        </BasicLayout>
-    )
+  const onSubmit = async (data) => {
+    mutation.mutate(data);
+  }
+
+  if (isSuccess) {
+    return <Navigate to="/movies/list" />
+  }
+
+  return (
+    <BasicLayout>
+      <div className="pt-2">
+        <h1>Edit Movie</h1>
+        {movie &&
+          <MovieForm initialMovie={movie} submitAction={onSubmit} buttonLabel="Update" />
+        }
+      </div>
+    </BasicLayout>
+  )
 }
