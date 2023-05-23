@@ -1,29 +1,67 @@
-
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import { useParams } from "react-router-dom";
-import { hotelUtils }  from 'main/utils/hotelUtils';
-import HotelForm from 'main/components/Hotels/HotelForm';
-import { useNavigate } from 'react-router-dom'
+import HotelForm from "main/components/Hotels/HotelForm";
+import { Navigate } from 'react-router-dom'
+import { useBackend, useBackendMutation } from "main/utils/useBackend";
 
+import { toast } from "react-toastify";
 
 export default function HotelEditPage() {
-    let { id } = useParams();
+  let { id } = useParams();
 
-    let navigate = useNavigate(); 
+  const { data: hotel, _error, _status } =
+    useBackend(
+      [`/api/hotels?id=${id}`],
+      {  
+        method: "GET",
+        url: `/api/hotels`,
+        params: {
+          id
+        }
+      }
+    );
 
-    const response = hotelUtils.getById(id);
 
-    const onSubmit = async (hotel) => {
-        const updatedHotel = hotelUtils.update(hotel);
-        console.log("updatedHotel: " + JSON.stringify(updatedHotel));
-        navigate("/hotels");
-    }  
+  const objectToAxiosPutParams = (hotel) => ({
+    url: "/api/hotels",
+    method: "PUT",
+    params: {
+      id: hotel.id,
+    },
+    data: {
+      name: hotel.name,
+      description: hotel.address,
+      address: hotel.description
+    }
+  });
+
+  const onSuccess = (hotel) => {
+    toast(`Hotel Updated - id: ${hotel.id} name: ${hotel.name}`);
+  }
+
+  const mutation = useBackendMutation(
+    objectToAxiosPutParams,
+    { onSuccess },
+    [`/api/hotels?id=${id}`]
+  );
+
+  const { isSuccess } = mutation
+
+  const onSubmit = async (data) => {
+    mutation.mutate(data);
+  }
+
+  if (isSuccess) {
+    return <Navigate to="/hotels/" />
+  }
 
     return (
         <BasicLayout>
             <div className="pt-2">
                 <h1>Edit Hotel</h1>
-                <HotelForm submitAction={onSubmit} buttonLabel={"Update"} initialContents={response.hotel}/>
+                {hotel &&
+                <HotelForm initialContents={hotel} submitAction={onSubmit} buttonLabel="Update" />
+                }
             </div>
         </BasicLayout>
     )
