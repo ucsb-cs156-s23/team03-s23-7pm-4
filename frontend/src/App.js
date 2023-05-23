@@ -11,6 +11,18 @@ import UCSBDatesIndexPage from "main/pages/UCSBDates/UCSBDatesIndexPage";
 import UCSBDatesCreatePage from "main/pages/UCSBDates/UCSBDatesCreatePage";
 import UCSBDatesEditPage from "main/pages/UCSBDates/UCSBDatesEditPage";
 
+import MovieIndexPage from "main/pages/Movies/MovieIndexPage";
+import MovieDetailsPage from "main/pages/Movies/MovieDetailsPage";
+import MovieCreatePage from "main/pages/Movies/MovieCreatePage";
+import MovieEditPage from "main/pages/Movies/MovieEditPage";
+
+
+import HotelCreatePage from "main/pages/Hotels/HotelCreatePage";
+import HotelEditPage from "main/pages/Hotels/HotelEditPage";
+import HotelIndexPage from "main/pages/Hotels/HotelIndexPage";
+import HotelDetailsPage from "main/pages/Hotels/HotelDetailsPage";
+
+
 import RestaurantIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
 import RestaurantDetailsPage from "main/pages/Restaurants/RestaurantDetailsPage";
 import RestaurantCreatePage from "main/pages/Restaurants/RestaurantCreatePage";
@@ -45,6 +57,12 @@ function App() {
               
               <Route exact path="/restaurants/details/:id" element={<RestaurantDetailsPage />} />
               <Route exact path="/restaurants/list" element={<RestaurantIndexPage />} /> 
+                
+              <Route exact path="/hotels/list" element={<HotelIndexPage />} />
+              <Route exact path="/hotels/details/:id" element={<HotelDetailsPage />} />
+                
+              <Route exact path="/movies/details/:id" element={<MovieDetailsPage />} />
+              <Route exact path="/movies/list" element={<MovieIndexPage />} />
             </>
           )
         }
@@ -54,7 +72,13 @@ function App() {
             <>
               <Route exact path="/ucsbdates/edit/:id" element={<UCSBDatesEditPage />} />
               <Route exact path="/ucsbdates/create" element={<UCSBDatesCreatePage />} />
-
+                
+               <Route exact path="/hotels/create" element={<HotelCreatePage />} />
+              <Route exact path="/hotels/edit/:id" element={<HotelEditPage />} />
+ 
+              <Route exact path="/movies/create" element={<MovieCreatePage />} />
+              <Route exact path="/movies/edit/:id" element={<MovieEditPage />} />
+                
               <Route exact path="/restaurants/create" element={<RestaurantCreatePage />} />
               <Route exact path="/restaurants/edit/:id" element={<RestaurantEditPage />} />
             </>
