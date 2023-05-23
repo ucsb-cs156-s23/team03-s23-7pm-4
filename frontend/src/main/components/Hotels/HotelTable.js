@@ -5,7 +5,7 @@ import { cellToAxiosParamsDelete, onDeleteSuccess } from "main/utils/hotelUtils"
 import { useNavigate } from "react-router-dom";
 import { hasRole } from "main/utils/currentUser";
 
-export default function HotelTable({ hotels, currentUser }) {
+export default function HotelTable({ hotels, currentUser, showButtons = true }) {
 
     const navigate = useNavigate();
 
@@ -45,7 +45,7 @@ export default function HotelTable({ hotels, currentUser }) {
         }
     ];
 
-    if (hasRole(currentUser, "ROLE_ADMIN")) {
+    if (hasRole(currentUser, "ROLE_ADMIN" ) && showButtons) {
         columns.push(ButtonColumn("Edit", "primary", editCallback, "HotelTable"));
         columns.push(ButtonColumn("Delete", "danger", deleteCallback, "HotelTable"));
     } 
