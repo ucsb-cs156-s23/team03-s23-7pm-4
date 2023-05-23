@@ -1,6 +1,6 @@
 import { render, waitFor, fireEvent } from "@testing-library/react";
-import UCSBDateForm from "main/components/UCSBDates/UCSBDateForm";
-import { ucsbDatesFixtures } from "fixtures/ucsbDatesFixtures";
+import HotelForm from "main/components/Hotels/HotelForm";
+import { hotelFixtures } from "fixtures/hotelFixtures";
 import { BrowserRouter as Router } from "react-router-dom";
 
 const mockedNavigate = jest.fn();
@@ -11,30 +11,30 @@ jest.mock('react-router-dom', () => ({
 }));
 
 
-describe("UCSBDateForm tests", () => {
+describe("HotelForm tests", () => {
 
     test("renders correctly", async () => {
 
         const { getByText, findByText } = render(
             <Router  >
-                <UCSBDateForm />
+                <HotelForm />
             </Router>
         );
-        await findByText(/Quarter YYYYQ/);
+        await findByText(/Name/);
         await findByText(/Create/);
     });
 
 
-    test("renders correctly when passing in a UCSBDate", async () => {
+    test("renders correctly when passing in a Hotel", async () => {
 
         const { getByText, getByTestId, findByTestId } = render(
             <Router  >
-                <UCSBDateForm initialUCSBDate={ucsbDatesFixtures.oneDate} />
+                <HotelForm initialContents={hotelFixtures.oneHotel[0]} />
             </Router>
         );
-        await findByTestId(/UCSBDateForm-id/);
+        await findByTestId(/HotelForm-id/);
         expect(getByText(/Id/)).toBeInTheDocument();
-        expect(getByTestId(/UCSBDateForm-id/)).toHaveValue("1");
+        expect(getByTestId(/HotelForm-id/)).toHaveValue("1");
     });
 
 
@@ -42,17 +42,17 @@ describe("UCSBDateForm tests", () => {
 
         const { getByTestId, getByText, findByTestId, findByText } = render(
             <Router  >
-                <UCSBDateForm />
+                <HotelForm />
             </Router>
         );
-        await findByTestId("UCSBDateForm-submit");
-        const submitButton = getByTestId("UCSBDateForm-submit");
+        await findByTestId("HotelForm-submit");
+        const submitButton = getByTestId("HotelForm-submit");
 
         fireEvent.click(submitButton);
 
-        await findByText(/QuarterYYYYQ is required./);
-        expect(getByText(/Name is required./)).toBeInTheDocument();
-        expect(getByText(/LocalDateTime is required./)).toBeInTheDocument();
+        await findByText(/Name is required./);
+        expect(getByText(/Address is required./)).toBeInTheDocument();
+        expect(getByText(/Description is required./)).toBeInTheDocument();
 
     });
 
@@ -63,25 +63,25 @@ describe("UCSBDateForm tests", () => {
 
         const { getByTestId, queryByText, findByTestId } = render(
             <Router  >
-                <UCSBDateForm submitAction={mockSubmitAction} />
+                <HotelForm submitAction={mockSubmitAction} />
             </Router>
         );
-        await findByTestId("UCSBDateForm-quarterYYYYQ");
+        await findByTestId("HotelForm-name");
 
-        const quarterYYYYQField = getByTestId("UCSBDateForm-quarterYYYYQ");
-        const nameField = getByTestId("UCSBDateForm-name");
-        const localDateTimeField = getByTestId("UCSBDateForm-localDateTime");
-        const submitButton = getByTestId("UCSBDateForm-submit");
+        const nameField = getByTestId("HotelForm-name");
+        const addressField = getByTestId("HotelForm-address");
+        const descriptionField = getByTestId("HotelForm-description");
+        const submitButton = getByTestId("HotelForm-submit");
 
-        fireEvent.change(quarterYYYYQField, { target: { value: '20221' } });
-        fireEvent.change(nameField, { target: { value: 'noon on January 2nd' } });
-        fireEvent.change(localDateTimeField, { target: { value: '2022-01-02T12:00' } });
+        fireEvent.change(nameField, { target: { value: 'The Ritz-Carlton' } });
+        fireEvent.change(addressField, { target: { value: '8301 Hollister Ave, Santa Barbara, CA 93117' } });
+        fireEvent.change(descriptionField, { target: { value: 'a luxury resort in Santa Barbara set on 78 acres with two natural beaches, a holistic spa and seasonal cuisine.' } });
         fireEvent.click(submitButton);
 
         await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
 
-        expect(queryByText(/QuarterYYYYQ must be in the format YYYYQ/)).not.toBeInTheDocument();
-        expect(queryByText(/localDateTime must be in ISO format/)).not.toBeInTheDocument();
+        expect(queryByText(/Name must be in the format string/)).not.toBeInTheDocument();
+        expect(queryByText(/Description must be in format string/)).not.toBeInTheDocument();
 
     });
 
@@ -90,11 +90,11 @@ describe("UCSBDateForm tests", () => {
 
         const { getByTestId, findByTestId } = render(
             <Router  >
-                <UCSBDateForm />
+                <HotelForm />
             </Router>
         );
-        await findByTestId("UCSBDateForm-cancel");
-        const cancelButton = getByTestId("UCSBDateForm-cancel");
+        await findByTestId("HotelForm-cancel");
+        const cancelButton = getByTestId("HotelForm-cancel");
 
         fireEvent.click(cancelButton);
 
