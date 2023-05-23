@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for utils/hotelUtils.js</title>
+    <title>Code coverage report for utils/movieUtils.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">utils</a> hotelUtils.js</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">utils</a> movieUtils.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -151,7 +151,11 @@
 <a name='L86'></a><a href='#L86'>86</a>
 <a name='L87'></a><a href='#L87'>87</a>
 <a name='L88'></a><a href='#L88'>88</a>
-<a name='L89'></a><a href='#L89'>89</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
@@ -239,87 +243,91 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// get hotels from local storage
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// get movies from local storage
 const get = () =&gt; {
-    const hotelValue = localStorage.getItem("hotels");
-    if (hotelValue === undefined) {
-        const hotelCollection = { nextId: 1, hotels: [] }
-        return set(hotelCollection);
+    const movieValue = localStorage.getItem("movies");
+    if (movieValue === undefined) {
+        const movieCollection = { nextId: 1, movies: [] }
+        return set(movieCollection);
     }
-    const hotelCollection = JSON.parse(hotelValue);
-    if (hotelCollection === null) {
-        const hotelCollection = { nextId: 1, hotels: [] }
-        return set(hotelCollection);
+    const movieCollection = JSON.parse(movieValue);
+    if (movieCollection === null) {
+        const movieCollection = { nextId: 1, movies: [] }
+        return set(movieCollection);
     }
-    return hotelCollection;
+    return movieCollection;
 };
 &nbsp;
 const getById = (id) =&gt; {
     if (id === undefined) {
         return { "error": "id is a required parameter" };
     }
-    const hotelCollection = get();
-    const hotels = hotelCollection.hotels;
+    const movieCollection = get();
+    const movies = movieCollection.movies;
 &nbsp;
     /* eslint-disable-next-line eqeqeq */ // we really do want == here, not ===
-    const index = hotels.findIndex((r) =&gt; r.id == id);
+    const index = movies.findIndex((r) =&gt; r.id == id);
     if (index === -1) {
-        return { "error": `hotel with id ${id} not found` };
+        return { "error": `movie with id ${id} not found` };
     }
-    return { hotel: hotels[index] };
+    return { movie: movies[index] };
 }
 &nbsp;
-// set hotels in local storage
-const set = (hotelCollection) =&gt; {
-    localStorage.setItem("hotels", JSON.stringify(hotelCollection));
-    return hotelCollection;
+// set movies in local storage
+const set = (movieCollection) =&gt; {
+    localStorage.setItem("movies", JSON.stringify(movieCollection));
+    return movieCollection;
 };
 &nbsp;
-// add a hotel to local storage
-const add = (hotel) =&gt; {
-    const hotelCollection = get();
-    hotel = { ...hotel, id: hotelCollection.nextId };
-    hotelCollection.nextId++;
-    hotelCollection.hotels.push(hotel);
-    set(hotelCollection);
-    return hotel;
+// add a movie to local storage
+const add = (movie) =&gt; {
+    const movieCollection = get();
+    movie = { ...movie, id: movieCollection.nextId };
+    movieCollection.nextId++;
+    movieCollection.movies.push(movie);
+    set(movieCollection);
+    return movie;
 };
 &nbsp;
-// update a hotel in local storage
-const update = (hotel) =&gt; {
-    const hotelCollection = get();
+// update a movie in local storage
+const update = (movie) =&gt; {
+    const movieCollection = get();
 &nbsp;
-    const hotels = hotelCollection.hotels;
+    const movies = movieCollection.movies;
 &nbsp;
     /* eslint-disable-next-line eqeqeq */ // we really do want == here, not ===
-    const index = hotels.findIndex((r) =&gt; r.id == hotel.id);
+    const index = movies.findIndex((r) =&gt; r.id == movie.id);
     if (index === -1) {
-        return { "error": `hotel with id ${hotel.id} not found` };
+        return { "error": `movie with id ${movie.id} not found` };
     }
-    hotels[index] = hotel;
-    set(hotelCollection);
-    return { hotelCollection: hotelCollection };
+    movies[index] = movie;
+    set(movieCollection);
+    return { movieCollection: movieCollection };
 };
 &nbsp;
-// delete a hotel from local storage
+// delete a movie from local storage
 const del = (id) =&gt; {
     if (id === undefined) {
         return { "error": "id is a required parameter" };
     }
-    const hotelCollection = get();
-    const hotels = hotelCollection.hotels;
+    const movieCollection = get();
+    const movies = movieCollection.movies;
 &nbsp;
     /* eslint-disable-next-line eqeqeq */ // we really do want == here, not ===
-    const index = hotels.findIndex((r) =&gt; r.id == id);
+    const index = movies.findIndex((r) =&gt; r.id == id);
     if (index === -1) {
-        return { "error": `hotel with id ${id} not found` };
+        return { "error": `movie with id ${id} not found` };
     }
-    hotels.splice(index, 1);
-    set(hotelCollection);
-    return { hotelCollection: hotelCollection };
+    movies.splice(index, 1);
+    set(movieCollection);
+    return { movieCollection: movieCollection };
 };
 &nbsp;
-const hotelUtils = {
+const movieUtils = {
     get,
     getById,
     add,
@@ -327,7 +335,11 @@ const hotelUtils = {
     del
 };
 &nbsp;
-export { hotelUtils };</pre></td></tr></table></pre>
+export { movieUtils };
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
