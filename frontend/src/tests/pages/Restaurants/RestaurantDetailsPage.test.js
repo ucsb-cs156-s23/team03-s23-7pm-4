@@ -25,7 +25,8 @@ jest.mock('main/utils/restaurantUtils', () => {
                     restaurant: {
                         id: 3,
                         name: "Freebirds",
-                        description: "Burritos"
+                        description: "Burritos",
+                        price:"$$"
                     }
                 }
             }
@@ -60,6 +61,7 @@ describe("RestaurantDetailsPage tests", () => {
         );
         expect(screen.getByText("Freebirds")).toBeInTheDocument();
         expect(screen.getByText("Burritos")).toBeInTheDocument();
+        expect(screen.getByText("$$")).toBeInTheDocument();
 
         expect(screen.queryByText("Delete")).not.toBeInTheDocument();
         expect(screen.queryByText("Edit")).not.toBeInTheDocument();
