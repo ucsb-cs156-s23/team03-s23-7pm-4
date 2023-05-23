@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for pages/Restaurants/RestaurantEditPage.js</title>
+    <title>Code coverage report for pages/Movies/MovieEditPage.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">pages/Restaurants</a> RestaurantEditPage.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">pages/Movies</a> MovieEditPage.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -124,29 +124,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&nbsp;
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import { useParams } from "react-router-dom";
-import { restaurantUtils }  from 'main/utils/restaurantUtils';
-import RestaurantForm from 'main/components/Restaurants/RestaurantForm';
+import { movieUtils }  from 'main/utils/movieUtils';
+import MovieForm from 'main/components/Movies/MovieForm';
 import { useNavigate } from 'react-router-dom'
 &nbsp;
 &nbsp;
-export default function RestaurantEditPage() {
+export default function MovieEditPage() {
     let { id } = useParams();
 &nbsp;
     let navigate = useNavigate(); 
 &nbsp;
-    const response = restaurantUtils.getById(id);
+    const response = movieUtils.getById(id);
 &nbsp;
-    const onSubmit = async (restaurant) =&gt; {
-        const updatedRestaurant = restaurantUtils.update(restaurant);
-        console.log("updatedRestaurant: " + JSON.stringify(updatedRestaurant));
-        navigate("/restaurants/list");
+    const onSubmit = async (movie) =&gt; {
+        const updatedMovie = movieUtils.update(movie);
+        console.log("updatedMovie: " + JSON.stringify(updatedMovie));
+        navigate("/movies/list");
     }  
 &nbsp;
     return (
         &lt;BasicLayout&gt;
             &lt;div className="pt-2"&gt;
-                &lt;h1&gt;Edit Restaurant&lt;/h1&gt;
-                &lt;RestaurantForm submitAction={onSubmit} buttonLabel={"Update"} initialContents={response.restaurant}/&gt;
+                &lt;h1&gt;Edit Movie&lt;/h1&gt;
+                &lt;MovieForm submitAction={onSubmit} buttonLabel={"Update"} initialContents={response.movie}/&gt;
             &lt;/div&gt;
         &lt;/BasicLayout&gt;
     )
