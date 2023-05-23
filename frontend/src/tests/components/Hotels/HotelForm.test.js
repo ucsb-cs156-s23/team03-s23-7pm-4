@@ -1,10 +1,7 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { render, waitFor, fireEvent } from "@testing-library/react";
+import UCSBDateForm from "main/components/UCSBDates/UCSBDateForm";
+import { ucsbDatesFixtures } from "fixtures/ucsbDatesFixtures";
 import { BrowserRouter as Router } from "react-router-dom";
-
-import HotelForm from "main/components/Hotels/HotelForm";
-import { hotelFixtures } from "fixtures/hotelFixtures";
-
-import { QueryClient, QueryClientProvider } from "react-query";
 
 const mockedNavigate = jest.fn();
 
@@ -13,65 +10,98 @@ jest.mock('react-router-dom', () => ({
     useNavigate: () => mockedNavigate
 }));
 
-describe("HotelForm tests", () => {
-    const queryClient = new QueryClient();
 
-    const expectedHeaders = ["Name","Address","Description"];
-    const testId = "HotelForm";
+describe("UCSBDateForm tests", () => {
 
-    test("renders correctly with no initialContents", async () => {
-        render(
-            <QueryClientProvider client={queryClient}>
-                <Router>
-                    <HotelForm />
-                </Router>
-            </QueryClientProvider>
+    test("renders correctly", async () => {
+
+        const { getByText, findByText } = render(
+            <Router  >
+                <UCSBDateForm />
+            </Router>
         );
+        await findByText(/Quarter YYYYQ/);
+        await findByText(/Create/);
+    });
 
-        expect(await screen.findByText(/Create/)).toBeInTheDocument();
 
-        expectedHeaders.forEach((headerText) => {
-            const header = screen.getByText(headerText);
-            expect(header).toBeInTheDocument();
-          });
+    test("renders correctly when passing in a UCSBDate", async () => {
+
+        const { getByText, getByTestId, findByTestId } = render(
+            <Router  >
+                <UCSBDateForm initialUCSBDate={ucsbDatesFixtures.oneDate} />
+            </Router>
+        );
+        await findByTestId(/UCSBDateForm-id/);
+        expect(getByText(/Id/)).toBeInTheDocument();
+        expect(getByTestId(/UCSBDateForm-id/)).toHaveValue("1");
+    });
+
+
+    test("Correct Error messsages on missing input", async () => {
+
+        const { getByTestId, getByText, findByTestId, findByText } = render(
+            <Router  >
+                <UCSBDateForm />
+            </Router>
+        );
+        await findByTestId("UCSBDateForm-submit");
+        const submitButton = getByTestId("UCSBDateForm-submit");
+
+        fireEvent.click(submitButton);
+
+        await findByText(/QuarterYYYYQ is required./);
+        expect(getByText(/Name is required./)).toBeInTheDocument();
+        expect(getByText(/LocalDateTime is required./)).toBeInTheDocument();
 
     });
 
-    test("renders correctly when passing in initialContents", async () => {
-        render(
-            <QueryClientProvider client={queryClient}>
-                <Router>
-                    <HotelForm initialContents={hotelFixtures.oneHotel} />
-                </Router>
-            </QueryClientProvider>
+    test("No Error messsages on good input", async () => {
+
+        const mockSubmitAction = jest.fn();
+
+
+        const { getByTestId, queryByText, findByTestId } = render(
+            <Router  >
+                <UCSBDateForm submitAction={mockSubmitAction} />
+            </Router>
         );
+        await findByTestId("UCSBDateForm-quarterYYYYQ");
 
-        expect(await screen.findByText(/Create/)).toBeInTheDocument();
+        const quarterYYYYQField = getByTestId("UCSBDateForm-quarterYYYYQ");
+        const nameField = getByTestId("UCSBDateForm-name");
+        const localDateTimeField = getByTestId("UCSBDateForm-localDateTime");
+        const submitButton = getByTestId("UCSBDateForm-submit");
 
-        expectedHeaders.forEach((headerText) => {
-            const header = screen.getByText(headerText);
-            expect(header).toBeInTheDocument();
-        });
+        fireEvent.change(quarterYYYYQField, { target: { value: '20221' } });
+        fireEvent.change(nameField, { target: { value: 'noon on January 2nd' } });
+        fireEvent.change(localDateTimeField, { target: { value: '2022-01-02T12:00' } });
+        fireEvent.click(submitButton);
 
-        expect(await screen.findByTestId(`${testId}-id`)).toBeInTheDocument();
-        expect(screen.getByText(`Id`)).toBeInTheDocument();
+        await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
+
+        expect(queryByText(/QuarterYYYYQ must be in the format YYYYQ/)).not.toBeInTheDocument();
+        expect(queryByText(/localDateTime must be in ISO format/)).not.toBeInTheDocument();
+
     });
 
 
     test("that navigate(-1) is called when Cancel is clicked", async () => {
-        render(
-            <QueryClientProvider client={queryClient}>
-                <Router>
-                    <HotelForm />
-                </Router>
-            </QueryClientProvider>
+
+        const { getByTestId, findByTestId } = render(
+            <Router  >
+                <UCSBDateForm />
+            </Router>
         );
-        expect(await screen.findByTestId(`${testId}-cancel`)).toBeInTheDocument();
-        const cancelButton = screen.getByTestId(`${testId}-cancel`);
+        await findByTestId("UCSBDateForm-cancel");
+        const cancelButton = getByTestId("UCSBDateForm-cancel");
 
         fireEvent.click(cancelButton);
 
         await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith(-1));
+
     });
 
 });
+
+
