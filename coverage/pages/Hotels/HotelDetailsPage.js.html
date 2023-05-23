@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for pages/Restaurants/RestaurantDetailsPage.js</title>
+    <title>Code coverage report for pages/Hotels/HotelDetailsPage.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">pages/Restaurants</a> RestaurantDetailsPage.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">pages/Hotels</a> HotelDetailsPage.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -103,19 +103,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import { useParams } from "react-router-dom";
-import RestaurantTable from 'main/components/Restaurants/RestaurantTable';
-import { restaurantUtils } from 'main/utils/restaurantUtils';
+import HotelTable from 'main/components/Hotels/HotelTable';
+import { hotelUtils } from 'main/utils/hotelUtils';
 &nbsp;
-export default function RestaurantDetailsPage() {
+export default function HotelDetailsPage() {
   let { id } = useParams();
 &nbsp;
-  const response = restaurantUtils.getById(id);
+  const response = hotelUtils.getById(id);
 &nbsp;
   return (
     &lt;BasicLayout&gt;
       &lt;div className="pt-2"&gt;
-        &lt;h1&gt;Restaurant Details&lt;/h1&gt;
-        &lt;RestaurantTable restaurants={[response.restaurant]} showButtons={false} /&gt;
+        &lt;h1&gt;Hotel Details&lt;/h1&gt;
+        &lt;HotelTable hotels={[response.hotel]} showButtons={false} /&gt;
       &lt;/div&gt;
     &lt;/BasicLayout&gt;
   )
