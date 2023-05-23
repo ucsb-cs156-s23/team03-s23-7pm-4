@@ -26,7 +26,7 @@ export default function MoviesEditPage() {
     url: "/api/movies",
     method: "PUT",
     params: {
-      id: movie.id,
+      id:id,
     },
     data: {
       name: movie.name,
@@ -61,7 +61,7 @@ export default function MoviesEditPage() {
       <div className="pt-2">
         <h1>Edit Movie</h1>
         {movie &&
-          <MovieForm initialMovie={movie} submitAction={onSubmit} buttonLabel="Update" />
+          <MovieForm initialContents={movie} submitAction={onSubmit} buttonLabel="Update" />
         }
       </div>
     </BasicLayout>

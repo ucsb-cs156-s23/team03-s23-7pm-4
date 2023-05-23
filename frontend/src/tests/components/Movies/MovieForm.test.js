@@ -1,10 +1,8 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { BrowserRouter as Router } from "react-router-dom";
-
+import { render, waitFor, fireEvent } from "@testing-library/react";
 import MovieForm from "main/components/Movies/MovieForm";
 import { movieFixtures } from "fixtures/movieFixtures";
+import { BrowserRouter as Router } from "react-router-dom";
 
-import { QueryClient, QueryClientProvider } from "react-query";
 const mockedNavigate = jest.fn();
 
 jest.mock('react-router-dom', () => ({
@@ -12,65 +10,96 @@ jest.mock('react-router-dom', () => ({
     useNavigate: () => mockedNavigate
 }));
 
+
 describe("MovieForm tests", () => {
-    const queryClient = new QueryClient();
 
-    const expectedHeaders = ["Name","Year","Summary"];
-    const testId = "MovieForm";
+    test("renders correctly", async () => {
 
-    test("renders correctly with no initialContents", async () => {
-        render(
-            <QueryClientProvider client={queryClient}>
-                <Router>
-                    <MovieForm />
-                </Router>
-            </QueryClientProvider>
+        const { getByText, findByText } = render(
+            <Router  >
+                <MovieForm />
+            </Router>
         );
+        await findByText(/Name/);
+        await findByText(/Create/);
+    });
 
-        expect(await screen.findByText(/Create/)).toBeInTheDocument();
 
-        expectedHeaders.forEach((headerText) => {
-            const header = screen.getByText(headerText);
-            expect(header).toBeInTheDocument();
-          });
+    test("renders correctly when passing in a Movie", async () => {
+
+        const { getByText, getByTestId, findByTestId } = render(
+            <Router  >
+                <MovieForm initialContents={movieFixtures.oneMovie[0]} />
+            </Router>
+        );
+        await findByTestId(/MovieForm-id/);
+        expect(getByText(/Id/)).toBeInTheDocument();
+        expect(getByTestId(/MovieForm-id/)).toHaveValue("1");
+    });
+
+
+
+    test("Correct Error messsages on missing input", async () => {
+
+        const { getByTestId, getByText, findByTestId, findByText } = render(
+            <Router  >
+                <MovieForm />
+            </Router>
+        );
+        await findByTestId("MovieForm-submit");
+        const submitButton = getByTestId("MovieForm-submit");
+
+        fireEvent.click(submitButton);
+
+        await findByText(/Name is required./);
+        expect(getByText(/Year is required./)).toBeInTheDocument();
+        expect(getByText(/Summary is required./)).toBeInTheDocument();
 
     });
 
-    test("renders correctly when passing in initialContents", async () => {
-        render(
-            <QueryClientProvider client={queryClient}>
-                <Router>
-                    <MovieForm initialContents={movieFixtures.oneMovie} />
-                </Router>
-            </QueryClientProvider>
+    test("No Error messsages on good input", async () => {
+
+        const mockSubmitAction = jest.fn();
+
+
+        const { getByTestId, queryByText, findByTestId } = render(
+            <Router  >
+                <MovieForm submitAction={mockSubmitAction} />
+            </Router>
         );
+        await findByTestId("MovieForm-name");
 
-        expect(await screen.findByText(/Create/)).toBeInTheDocument();
+        const nameField = getByTestId("MovieForm-name");
+        const yearField = getByTestId("MovieForm-year");
+        const summaryField = getByTestId("MovieForm-summary");
+        const submitButton = getByTestId("MovieForm-submit");
 
-        expectedHeaders.forEach((headerText) => {
-            const header = screen.getByText(headerText);
-            expect(header).toBeInTheDocument();
-        });
+        fireEvent.change(nameField, { target: { value: 'Spider-Man' } });
+        fireEvent.change(yearField, { target: { value: '2002' } });
+        fireEvent.change(summaryField, { target: { value: 'Peter Parker gets bitten by a spider' } });
+        fireEvent.click(submitButton);
 
-        expect(await screen.findByTestId(`${testId}-id`)).toBeInTheDocument();
-        expect(screen.getByText(`Id`)).toBeInTheDocument();
+        await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
+
     });
 
 
     test("that navigate(-1) is called when Cancel is clicked", async () => {
-        render(
-            <QueryClientProvider client={queryClient}>
-                <Router>
-                    <MovieForm />
-                </Router>
-            </QueryClientProvider>
+
+        const { getByTestId, findByTestId } = render(
+            <Router  >
+                <MovieForm />
+            </Router>
         );
-        expect(await screen.findByTestId(`${testId}-cancel`)).toBeInTheDocument();
-        const cancelButton = screen.getByTestId(`${testId}-cancel`);
+        await findByTestId("MovieForm-cancel");
+        const cancelButton = getByTestId("MovieForm-cancel");
 
         fireEvent.click(cancelButton);
 
         await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith(-1));
+
     });
 
 });
+
+
