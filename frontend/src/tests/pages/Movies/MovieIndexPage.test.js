@@ -113,7 +113,7 @@ describe("MovieIndexPage tests", () => {
         expect(mockDelete).toHaveBeenCalledTimes(1);
         expect(mockDelete).toHaveBeenCalledWith(3);
 
-        await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/movies"));
+        await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/movies/list"));
 
 
         // assert - check that the console.log was called with the expected message

@@ -114,7 +114,7 @@ describe("MovieEditPage tests", () => {
         });
 
         await waitFor(() => expect(mockUpdate).toHaveBeenCalled());
-        await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/movies"));
+        await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/movies/list"));
 
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
