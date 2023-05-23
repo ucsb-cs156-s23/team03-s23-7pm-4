@@ -17,7 +17,7 @@ export default function MovieIndexPage() {
     const deleteCallback = async (cell) => {
         console.log(`MovieIndexPage deleteCallback: ${showCell(cell)})`);
         movieUtils.del(cell.row.values.id);
-        navigate("/movies");
+        navigate("/movies/list");
     }
 
     return (

@@ -10,7 +10,7 @@ export default function MovieCreatePage() {
   const onSubmit = async (movie) => {
     const createdMovie = movieUtils.add(movie);
     console.log("createdMovie: " + JSON.stringify(createdMovie));
-    navigate("/movies");
+    navigate("/movies/list");
   }  
 
   return (

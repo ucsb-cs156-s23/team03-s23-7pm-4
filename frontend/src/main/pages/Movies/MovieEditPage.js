@@ -16,7 +16,7 @@ export default function MovieEditPage() {
     const onSubmit = async (movie) => {
         const updatedMovie = movieUtils.update(movie);
         console.log("updatedMovie: " + JSON.stringify(updatedMovie));
-        navigate("/movies");
+        navigate("/movies/list");
     }  
 
     return (
