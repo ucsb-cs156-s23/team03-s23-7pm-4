@@ -52,14 +52,17 @@ function App() {
               <Route exact path="/todos/list" element={<TodosIndexPage />} />
               <Route exact path="/todos/create" element={<TodosCreatePage />} />
               <Route exact path="/todos/edit/:todoId" element={<TodosEditPage />} />
-            </>
-          )
-        }
 
-        {
-          hasRole(currentUser, "ROLE_USER") && (
-            <>
               <Route exact path="/ucsbdates/list" element={<UCSBDatesIndexPage />} />
+
+              <Route exact path="/hotels/list" element={<HotelIndexPage />} />
+              <Route exact path="/hotels/details/:id" element={<HotelDetailsPage />} />
+
+              <Route exact path="/restaurants/details/:id" element={<RestaurantDetailsPage />} />
+              <Route exact path="/restaurants/list" element={<RestaurantIndexPage />} /> 
+
+              <Route exact path="/movies/details/:id" element={<MovieDetailsPage />} />
+              <Route exact path="/movies/list" element={<MovieIndexPage />} />
             </>
           )
         }
@@ -68,38 +71,15 @@ function App() {
             <>
               <Route exact path="/ucsbdates/edit/:id" element={<UCSBDatesEditPage />} />
               <Route exact path="/ucsbdates/create" element={<UCSBDatesCreatePage />} />
-            </>
-          )
-        }
-        {
-          hasRole(currentUser, "ROLE_ADMIN") && (
-            <>
+
               <Route exact path="/hotels/create" element={<HotelCreatePage />} />
               <Route exact path="/hotels/edit/:id" element={<HotelEditPage />} />
-              <Route exact path="/hotels/list" element={<HotelIndexPage />} />
-              <Route exact path="/hotels/details/:id" element={<HotelDetailsPage />} />
-            </>
-          )
-        }
 
-{
-          hasRole(currentUser, "ROLE_USER") && (
-            <>
               <Route exact path="/restaurants/create" element={<RestaurantCreatePage />} />
               <Route exact path="/restaurants/edit/:id" element={<RestaurantEditPage />} />
-              <Route exact path="/restaurants/details/:id" element={<RestaurantDetailsPage />} />
-              <Route exact path="/restaurants/list" element={<RestaurantIndexPage />} /> 
-            </>
-          )
-        }
 
-{
-          hasRole(currentUser, "ROLE_USER") && (
-            <>
               <Route exact path="/movies/create" element={<MovieCreatePage />} />
               <Route exact path="/movies/edit/:id" element={<MovieEditPage />} />
-              <Route exact path="/movies/details/:id" element={<MovieDetailsPage />} />
-              <Route exact path="/movies/list" element={<MovieIndexPage />} />
             </>
           )
         }

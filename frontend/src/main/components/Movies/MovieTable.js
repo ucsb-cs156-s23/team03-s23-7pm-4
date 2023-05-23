@@ -24,7 +24,10 @@ export default function MovieTable({ movies, currentUser }) {
 
     // Stryker disable next-line all : TODO try to make a good test for this
     const deleteCallback = async (cell) => { deleteMutation.mutate(cell); }
-
+    
+    const detailsCallback = (cell) => {
+        navigate(`/movies/details/${cell.row.values.id}`)
+    }
 
     const columns = [
         {
@@ -49,6 +52,7 @@ export default function MovieTable({ movies, currentUser }) {
         columns.push(ButtonColumn("Edit", "primary", editCallback, "MovieTable"));
         columns.push(ButtonColumn("Delete", "danger", deleteCallback, "MovieTable"));
     } 
+    columns.push(ButtonColumn("Details", "primary", detailsCallback, "MovieTable"));
 
     // Stryker disable next-line ArrayDeclaration : [columns] is a performance optimization
     const memoizedColumns = React.useMemo(() => columns, [columns]);
