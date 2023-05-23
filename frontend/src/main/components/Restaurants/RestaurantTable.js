@@ -1,36 +1,40 @@
 import React from "react";
 import OurTable, { ButtonColumn } from "main/components/OurTable";
-import { useBackendMutation } from "main/utils/useBackend";
-import { cellToAxiosParamsDelete, onDeleteSuccess } from "main/utils/restaurantUtils"
 import { useNavigate } from "react-router-dom";
-import { hasRole } from "main/utils/currentUser";
+import { restaurantUtils } from "main/utils/restaurantUtils";
 
-export default function RestaurantTable({ restaurants, currentUser }) {
+const showCell = (cell) => JSON.stringify(cell.row.values);
+
+
+const defaultDeleteCallback = async (cell) => {
+    console.log(`deleteCallback: ${showCell(cell)})`);
+    restaurantUtils.del(cell.row.values.id);
+}
+
+export default function RestaurantTable({
+    restaurants,
+    deleteCallback = defaultDeleteCallback,
+    showButtons = true,
+    testIdPrefix = "RestaurantTable" }) {
 
     const navigate = useNavigate();
-
+ 
     const editCallback = (cell) => {
+        console.log(`editCallback: ${showCell(cell)})`);
         navigate(`/restaurants/edit/${cell.row.values.id}`)
     }
 
-    // Stryker disable all : hard to test for query caching
-
-    const deleteMutation = useBackendMutation(
-        cellToAxiosParamsDelete,
-        { onSuccess: onDeleteSuccess },
-        ["/api/restaurants/all"]
-    );
-    // Stryker enable all 
-
-    // Stryker disable next-line all : TODO try to make a good test for this
-    const deleteCallback = async (cell) => { deleteMutation.mutate(cell); }
-
+    const detailsCallback = (cell) => {
+        console.log(`detailsCallback: ${showCell(cell)})`);
+        navigate(`/restaurants/details/${cell.row.values.id}`)
+    }
 
     const columns = [
         {
             Header: 'id',
             accessor: 'id', // accessor is the "key" in the data
         },
+
         {
             Header: 'Name',
             accessor: 'name',
@@ -38,25 +42,23 @@ export default function RestaurantTable({ restaurants, currentUser }) {
         {
             Header: 'Description',
             accessor: 'description',
-        },
-        {
-            Header: 'Price',
-            accessor: 'price',
         }
     ];
 
-    if (hasRole(currentUser, "ROLE_ADMIN")) {
-        columns.push(ButtonColumn("Edit", "primary", editCallback, "RestaurantTable"));
-        columns.push(ButtonColumn("Delete", "danger", deleteCallback, "RestaurantTable"));
-    } 
+    const buttonColumns = [
+        ...columns,
+        ButtonColumn("Details", "primary", detailsCallback, testIdPrefix),
+        ButtonColumn("Edit", "primary", editCallback, testIdPrefix),
+        ButtonColumn("Delete", "danger", deleteCallback, testIdPrefix),
+    ]
 
-    // Stryker disable next-line ArrayDeclaration : [columns] is a performance optimization
-    const memoizedColumns = React.useMemo(() => columns, [columns]);
-    const memoizedRestaurants = React.useMemo(() => restaurants, [restaurants]);
+    const columnsToDisplay = showButtons ? buttonColumns : columns;
 
     return <OurTable
-        data={memoizedRestaurants}
-        columns={memoizedColumns}
-        testid={"RestaurantTable"}
+        data={restaurants}
+        columns={columnsToDisplay}
+        testid={testIdPrefix}
     />;
 };
+
+export { showCell };
