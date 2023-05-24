@@ -5,7 +5,7 @@ import { cellToAxiosParamsDelete, onDeleteSuccess } from "main/utils/hotelUtils"
 import { useNavigate } from "react-router-dom";
 import { hasRole } from "main/utils/currentUser";
 
-export default function HotelTable({ hotels, currentUser, showButtons = true }) {
+export default function HotelTable({ hotels, currentUser, showButtons = true}) {
 
     const navigate = useNavigate();
 
@@ -25,6 +25,9 @@ export default function HotelTable({ hotels, currentUser, showButtons = true }) 
     // Stryker disable next-line all : TODO try to make a good test for this
     const deleteCallback = async (cell) => { deleteMutation.mutate(cell); }
 
+    const detailsCallback = (cell) => {
+        navigate(`/hotels/details/${cell.row.values.id}`)
+    }
 
     const columns = [
         {
@@ -36,19 +39,22 @@ export default function HotelTable({ hotels, currentUser, showButtons = true }) 
             accessor: 'name',
         },
         {
-            Header: 'Address',
-            accessor: 'address',
-        },
-        {
             Header: 'Description',
             accessor: 'description',
+        },
+        {
+            Header: 'Address',
+            accessor: 'address',
         }
     ];
-
-    if (hasRole(currentUser, "ROLE_ADMIN" ) && showButtons) {
-        columns.push(ButtonColumn("Edit", "primary", editCallback, "HotelTable"));
-        columns.push(ButtonColumn("Delete", "danger", deleteCallback, "HotelTable"));
-    } 
+    
+    if (showButtons) {
+        if (hasRole(currentUser, "ROLE_ADMIN") ) {
+            columns.push(ButtonColumn("Edit", "primary", editCallback, "HotelTable"));
+            columns.push(ButtonColumn("Delete", "danger", deleteCallback, "HotelTable"));
+        } 
+        columns.push(ButtonColumn("Details", "primary", detailsCallback, "HotelTable"));
+    }
 
     // Stryker disable next-line ArrayDeclaration : [columns] is a performance optimization
     const memoizedColumns = React.useMemo(() => columns, [columns]);

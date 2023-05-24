@@ -74,12 +74,12 @@ describe("HotelCreatePage tests", () => {
             expect(getByTestId("HotelForm-name")).toBeInTheDocument();
         });
 
-        const nameYYYYQField = getByTestId("HotelForm-name");
+        const nameField = getByTestId("HotelForm-name");
         const addressField = getByTestId("HotelForm-address");
         const descriptionField = getByTestId("HotelForm-description");
         const submitButton = getByTestId("HotelForm-submit");
 
-        fireEvent.change(nameYYYYQField, { target: { value: 'The Ritz-Carlton' } });
+        fireEvent.change(nameField, { target: { value: 'The Ritz-Carlton' } });
         fireEvent.change(addressField, { target: { value: '8301 Hollister Ave, Santa Barbara, CA 93117' } });
         fireEvent.change(descriptionField, { target: { value: 'a luxury resort in Santa Barbara set on 78 acres with two natural beaches, a holistic spa and seasonal cuisine.' } });
 
@@ -97,7 +97,7 @@ describe("HotelCreatePage tests", () => {
         });
 
         expect(mockToast).toBeCalledWith("New hotel Created - id: 17 name: The Ritz-Carlton");
-        expect(mockNavigate).toBeCalledWith({ "to": "/hotels/" });
+        expect(mockNavigate).toBeCalledWith({ "to": "/hotels/list" });
     });
 
 

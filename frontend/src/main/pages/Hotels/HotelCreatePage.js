@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom'
 import { useBackendMutation } from "main/utils/useBackend";
 import { toast } from "react-toastify";
 
-export default function HotelCreatePage() {
+export default function HotelsCreatePage() {
 
   const objectToAxiosParams = (hotel) => ({
     url: "/api/hotels/post",
@@ -22,10 +22,10 @@ export default function HotelCreatePage() {
 
   const mutation = useBackendMutation(
     objectToAxiosParams,
-    { onSuccess },
-    // Stryker disable next-line all : hard to set up test for caching
-    ["/api/hotels/all"]
-  );
+     { onSuccess }, 
+     // Stryker disable next-line all : hard to set up test for caching
+     ["/api/hotels/all"]
+     );
 
   const { isSuccess } = mutation
 
@@ -34,14 +34,16 @@ export default function HotelCreatePage() {
   }
 
   if (isSuccess) {
-    return <Navigate to="/hotels/" />
+    return <Navigate to="/hotels/list" />
   }
 
   return (
     <BasicLayout>
       <div className="pt-2">
         <h1>Create New Hotel</h1>
+
         <HotelForm submitAction={onSubmit} />
+
       </div>
     </BasicLayout>
   )

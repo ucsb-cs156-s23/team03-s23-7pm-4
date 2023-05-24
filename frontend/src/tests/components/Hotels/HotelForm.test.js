@@ -80,8 +80,8 @@ describe("HotelForm tests", () => {
 
         await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
 
-        expect(queryByText(/Name must be in the format string/)).not.toBeInTheDocument();
-        expect(queryByText(/Description must be in format string/)).not.toBeInTheDocument();
+        expect(queryByText(/Name must be in string format/)).not.toBeInTheDocument();
+        expect(queryByText(/Description must be in string format/)).not.toBeInTheDocument();
 
     });
 

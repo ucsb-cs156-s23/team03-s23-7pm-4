@@ -58,6 +58,22 @@ function HotelForm({ initialContents, submitAction, buttonLabel = "Create" }) {
             </Form.Group>
 
             <Form.Group className="mb-3" >
+                <Form.Label htmlFor="description">Description</Form.Label>
+                <Form.Control
+                    data-testid={testIdPrefix + "-description"}
+                    id="description"
+                    type="text"
+                    isInvalid={Boolean(errors.description)}
+                    {...register("description", {
+                        required: "Description is required."
+                    })}
+                />
+                <Form.Control.Feedback type="invalid">
+                    {errors.description?.message}
+                </Form.Control.Feedback>
+            </Form.Group>
+
+            <Form.Group className="mb-3" >
                 <Form.Label htmlFor="address">Address</Form.Label>
                 <Form.Control
                     data-testid={testIdPrefix + "-address"}
@@ -73,21 +89,6 @@ function HotelForm({ initialContents, submitAction, buttonLabel = "Create" }) {
                 </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group className="mb-3" >
-                <Form.Label htmlFor="description">Description</Form.Label>
-                <Form.Control
-                    data-testid={testIdPrefix + "-description"}
-                    id="description"
-                    type="text"
-                    isInvalid={Boolean(errors.description)}
-                    {...register("description", {
-                        required: "Description is required."
-                    })}
-                />
-                <Form.Control.Feedback type="invalid">
-                    {errors.description?.message}
-                </Form.Control.Feedback>
-            </Form.Group>
 
             <Button
                 type="submit"

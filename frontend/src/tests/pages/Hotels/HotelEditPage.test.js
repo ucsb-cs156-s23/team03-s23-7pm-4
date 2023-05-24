@@ -154,12 +154,11 @@ describe("HotelEditPage tests", () => {
             fireEvent.change(addressField, { target: { value: '5650 Calle Real, Goleta, CA 93117' } })
             fireEvent.change(descriptionField, { target: { value: "hotel's rooms feature an eclectic mix of textures and textiles, accented by dashes of nostalgia like mid-mod furnishings." } })
 
-
             fireEvent.click(submitButton);
 
             await waitFor(() => expect(mockToast).toBeCalled);
             expect(mockToast).toBeCalledWith("Hotel Updated - id: 17 name: The Leta Hotel");
-            expect(mockNavigate).toBeCalledWith({ "to": "/hotels/" });
+            expect(mockNavigate).toBeCalledWith({ "to": "/hotels/list" });
 
             expect(axiosMock.history.put.length).toBe(1); // times called
             expect(axiosMock.history.put[0].params).toEqual({ id: 17 });

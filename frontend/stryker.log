@@ -1,0 +1,732 @@
+19:23:50 (41738) DEBUG ConfigReader Loading config from stryker.conf.json
+19:23:50 (41738) DEBUG ConfigReader Loaded config: {
+  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "_comment": "This config was generated using 'stryker init'. Please see the guide for more information: https://stryker-mutator.io/docs/stryker-js/guides/react",
+  "testRunner": "jest",
+  "reporters": [
+    "progress",
+    "clear-text",
+    "html"
+  ],
+  "coverageAnalysis": "off",
+  "jest": {
+    "projectType": "create-react-app"
+  },
+  "mutate": [
+    "src/main/**/*.{js,jsx,ts,tsx}",
+    "!src/main/**/*_NoStryker.{js,jsx,ts,tsx}"
+  ],
+  "thresholds": {
+    "high": 100,
+    "low": 90,
+    "break": 100
+  },
+  "fileLogLevel": "trace",
+  "logLevel": "debug",
+  "allowConsoleColors": true,
+  "checkers": [],
+  "checkerNodeArgs": [],
+  "commandRunner": {
+    "command": "npm test"
+  },
+  "clearTextReporter": {
+    "allowColor": true,
+    "allowEmojis": false,
+    "logTests": true,
+    "maxTestsToLog": 3
+  },
+  "dashboard": {
+    "baseUrl": "https://dashboard.stryker-mutator.io/api/reports",
+    "reportType": "full"
+  },
+  "dryRunOnly": false,
+  "eventReporter": {
+    "baseDir": "reports/mutation/events"
+  },
+  "ignorePatterns": [],
+  "ignoreStatic": false,
+  "incremental": false,
+  "incrementalFile": "reports/stryker-incremental.json",
+  "force": false,
+  "inPlace": false,
+  "maxConcurrentTestRunners": 9007199254740991,
+  "maxTestRunnerReuse": 0,
+  "mutator": {
+    "plugins": null,
+    "excludedMutations": []
+  },
+  "plugins": [
+    "@stryker-mutator/*"
+  ],
+  "appendPlugins": [],
+  "htmlReporter": {
+    "fileName": "reports/mutation/mutation.html"
+  },
+  "jsonReporter": {
+    "fileName": "reports/mutation/mutation.json"
+  },
+  "disableTypeChecks": "{test,src,lib}/**/*.{js,ts,jsx,tsx,html,vue}",
+  "symlinkNodeModules": true,
+  "tempDirName": ".stryker-tmp",
+  "cleanTempDir": true,
+  "testRunnerNodeArgs": [],
+  "timeoutFactor": 1.5,
+  "timeoutMS": 5000,
+  "dryRunTimeoutMinutes": 5,
+  "tsconfigFile": "tsconfig.json",
+  "warnings": true,
+  "disableBail": false
+}
+19:23:50 (41738) DEBUG PluginLoader Loading @stryker-mutator/* from /Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/@stryker-mutator
+19:23:50 (41738) DEBUG PluginLoader Loading plugin "@stryker-mutator/jest-runner" (matched with expression @stryker-mutator/*)
+19:23:50 (41738) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+19:23:50 (41738) DEBUG PluginLoader Loading plugin file:///Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+19:23:50 (41738) DEBUG MetaSchemaBuilder Contributing 1 schemas from plugins to options validation.
+19:23:50 (41738) INFO ProjectReader Found 44 of 224 file(s) to be mutated.
+19:23:50 (41738) DEBUG ProjectReader All input files: [
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.babelrc",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.env-cmdrc.json",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.eslintignore",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.gitignore",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.storybook/main.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.storybook/preview.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.storybook/webpack-plugin-fail-build-on-warning.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/README.md",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/base.css",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/block-navigation.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/components/Hotels/HotelForm.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/components/Hotels/HotelTable.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/components/Hotels/index.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/components/Movies/MovieForm.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/components/Movies/MovieTable.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/components/Movies/index.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/components/Nav/AppNavbar.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/components/Nav/AppNavbarLocalhost.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/components/Nav/Footer.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/components/Nav/index.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/components/OurTable.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/components/Profile/RoleBadge.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/components/Profile/index.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/components/Restaurants/RestaurantForm.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/components/Restaurants/RestaurantTable.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/components/Restaurants/index.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/components/UCSBDates/UCSBDateForm.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/components/UCSBDates/UCSBDatesTable.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/components/UCSBDates/index.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/components/Users/UsersTable.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/components/Users/index.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/components/index.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/favicon.png",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/index.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/layouts/BasicLayout/BasicLayout.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/layouts/BasicLayout/index.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/pages/AdminUsersPage.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/pages/HomePage.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/pages/Hotels/HotelCreatePage.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/pages/Hotels/HotelDetailsPage.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/pages/Hotels/HotelEditPage.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/pages/Hotels/HotelIndexPage.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/pages/Hotels/index.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/pages/Movies/MovieCreatePage.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/pages/Movies/MovieDetailsPage.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/pages/Movies/MovieEditPage.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/pages/Movies/MovieIndexPage.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/pages/Movies/index.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/pages/ProfilePage.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/pages/Restaurants/RestaurantCreatePage.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/pages/Restaurants/RestaurantDetailsPage.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/pages/Restaurants/RestaurantEditPage.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/pages/Restaurants/RestaurantIndexPage.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/pages/Restaurants/index.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/pages/Todos/TodosCreatePage.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/pages/Todos/TodosEditPage.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/pages/Todos/TodosIndexPage.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/pages/Todos/index.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/pages/UCSBDates/UCSBDatesCreatePage.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/pages/UCSBDates/UCSBDatesEditPage.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/pages/UCSBDates/UCSBDatesIndexPage.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/pages/UCSBDates/index.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/pages/index.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/prettify.css",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/prettify.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/sort-arrow-sprite.png",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/sorter.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/utils/UCSBDateUtils.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/utils/arrayUtils.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/utils/currentUser.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/utils/hotelUtils.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/utils/index.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/utils/minMax_NoStryker.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/utils/movieUtils.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/utils/restaurantUtils.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/utils/systemInfo.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov-report/utils/useBackend.js.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/coverage/lcov.info",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/docs-index/_branches/.keep",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/docs-index/_config.yml",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/docs-index/_layouts/default.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/docs-index/index.md",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/docs-index/storybook_placeholder.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/jsconfig.json",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/package-lock.json",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/package.json",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/public/favicon.ico",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/public/index.html",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/public/logo192.png",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/public/logo512.png",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/public/manifest.json",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/public/robots.txt",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/App.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/fixtures/currentUserFixtures.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/fixtures/hotelFixtures.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/fixtures/movieFixtures.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/fixtures/restaurantFixtures.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/fixtures/studentFixtures.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/fixtures/systemInfoFixtures.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/fixtures/temp.json",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/fixtures/ucsbDatesFixtures.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/fixtures/usersFixtures.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/index.css",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/index.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/components/Hotels/HotelForm.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/components/Hotels/HotelTable.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/components/Movies/MovieForm.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/components/Movies/MovieTable.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/components/Nav/AppNavbar.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/components/Nav/AppNavbarLocalhost.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/components/Nav/Footer.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/components/OurTable.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/components/Profile/RoleBadge.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/components/Restaurants/RestaurantForm.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/components/Restaurants/RestaurantTable.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/components/UCSBDates/UCSBDateForm.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/components/UCSBDates/UCSBDatesTable.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/components/Users/UsersTable.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/layouts/BasicLayout/BasicLayout.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/AdminUsersPage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/HomePage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/Hotels/HotelCreatePage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/Hotels/HotelDetailsPage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/Hotels/HotelEditPage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/Hotels/HotelIndexPage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/Movies/MovieCreatePage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/Movies/MovieDetailsPage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/Movies/MovieEditPage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/Movies/MovieIndexPage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/ProfilePage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/Restaurants/RestaurantCreatePage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/Restaurants/RestaurantDetailsPage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/Restaurants/RestaurantEditPage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/Restaurants/RestaurantIndexPage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/Todos/TodosCreatePage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/Todos/TodosEditPage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/Todos/TodosIndexPage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/UCSBDates/UCSBDatesCreatePage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/UCSBDates/UCSBDatesEditPage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/UCSBDates/UCSBDatesIndexPage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/utils/UCSBDateUtils.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/utils/arrayUtils.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/utils/currentUser.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/utils/hotelUtils.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/utils/minMax_NoStryker.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/utils/movieUtils.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/utils/restaurantUtils.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/utils/systemInfo.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/utils/useBackend.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/reportWebVitals.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/setupTests.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/stories/components/Hotels/HotelForm.stories.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/stories/components/Hotels/HotelTable.stories.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/stories/components/Movies/MovieForm.stories.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/stories/components/Movies/MovieTable.stories.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/stories/components/Nav/AppNavbar.stories.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/stories/components/Nav/AppNavbarLocalhost.stories.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/stories/components/OurTable.stories.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/stories/components/Profile/RoleBadge.stories.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/stories/components/Restaurants/RestaurantForm.stories.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/stories/components/Restaurants/RestaurantTable.stories.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/stories/components/UCSBDates/UCSBDateForm.stories.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/stories/components/UCSBDates/UCSBDatesTable.stories.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/stories/components/Users/UsersTable.stories.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/stories/layouts/BasicLayout/AppNavbar.stories.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/stories/layouts/BasicLayout/BasicLayout.stories.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/stories/layouts/BasicLayout/Footer.stories.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/stories/pages/HomePage/HomePage.stories.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/stories/pages/Movies/MovieCreatePage.stories.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/stories/pages/Movies/MovieDetailsPage.stories.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/stories/pages/Movies/MovieEditPage.stories.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/stories/pages/Movies/MovieIndexPage.stories.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/stories/pages/Restaurants/RestaurantCreatePage.stories.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/stories/pages/Restaurants/RestaurantDetailsPage.stories.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/stories/pages/Restaurants/RestaurantEditPage.stories.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/stories/pages/Restaurants/RestaurantIndexPage.stories.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/stories/pages/UCSBDates/UCSBDatesCreatePage.stories.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/stories/pages/UCSBDates/UCSBDatesEditPage.stories.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/stories/pages/UCSBDates/UCSBDatesIndexPage.stories.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/components/Hotels/HotelForm.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/components/Hotels/HotelTable.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/components/Movies/MovieForm.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/components/Movies/MovieTable.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/components/Nav/AppNavbar.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/components/Nav/AppNavbarLocalhost.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/components/Nav/Footer.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/components/OurTable.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/components/Profile/RoleBadge.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/components/Restaurants/RestaurantForm.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/components/Restaurants/RestaurantTable.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/components/UCSBDates/UCSBDateForm.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/components/UCSBDates/UCSBDatesTable.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/components/Users/UsersTable.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/pages/AdminUsersPage.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/pages/HomePage.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/pages/Hotels/HotelCreatePage.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/pages/Hotels/HotelDetailsPage.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/pages/Hotels/HotelEditPage.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/pages/Hotels/HotelIndexPage.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/pages/Movies/MovieCreatePage.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/pages/Movies/MovieDetailsPage.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/pages/Movies/MovieEditPage.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/pages/Movies/MovieIndexPage.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/pages/ProfilePage.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/pages/Restaurants/RestaurantCreatePage.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/pages/Restaurants/RestaurantDetailsPage.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/pages/Restaurants/RestaurantEditPage.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/pages/Restaurants/RestaurantIndexPage.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/pages/Todos/TodosCreatePage.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/pages/Todos/TodosEditPage.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/pages/Todos/TodosIndexPage.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/pages/UCSBDates/UCSBDatesCreatePage.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/pages/UCSBDates/UCSBDatesEditPage.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/pages/UCSBDates/UCSBDatesIndexPage.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/utils/UCSBDateUtils.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/utils/arrayUtils.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/utils/currentUser.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/utils/hotelUtils.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/utils/minMax_NoStryker.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/utils/movieUtils.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/utils/restaurantUtils.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/utils/systemInfo.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/tests/utils/useBackend.test.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/stryker.conf.json"
+]
+19:23:50 (41738) DEBUG ProjectReader Files to mutate: [
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/components/Hotels/HotelForm.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/components/Hotels/HotelTable.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/components/Movies/MovieForm.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/components/Movies/MovieTable.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/components/Nav/AppNavbar.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/components/Nav/AppNavbarLocalhost.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/components/Nav/Footer.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/components/OurTable.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/components/Profile/RoleBadge.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/components/Restaurants/RestaurantForm.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/components/Restaurants/RestaurantTable.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/components/UCSBDates/UCSBDateForm.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/components/UCSBDates/UCSBDatesTable.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/components/Users/UsersTable.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/layouts/BasicLayout/BasicLayout.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/AdminUsersPage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/HomePage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/Hotels/HotelCreatePage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/Hotels/HotelDetailsPage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/Hotels/HotelEditPage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/Hotels/HotelIndexPage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/Movies/MovieCreatePage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/Movies/MovieDetailsPage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/Movies/MovieEditPage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/Movies/MovieIndexPage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/ProfilePage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/Restaurants/RestaurantCreatePage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/Restaurants/RestaurantDetailsPage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/Restaurants/RestaurantEditPage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/Restaurants/RestaurantIndexPage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/Todos/TodosCreatePage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/Todos/TodosEditPage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/Todos/TodosIndexPage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/UCSBDates/UCSBDatesCreatePage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/UCSBDates/UCSBDatesEditPage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/pages/UCSBDates/UCSBDatesIndexPage.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/utils/UCSBDateUtils.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/utils/arrayUtils.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/utils/currentUser.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/utils/hotelUtils.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/utils/movieUtils.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/utils/restaurantUtils.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/utils/systemInfo.js",
+  "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/src/main/utils/useBackend.js"
+]
+19:23:50 (41738) DEBUG TemporaryDirectory Using temp directory "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp"
+19:23:51 (41738) DEBUG Instrumenter Instrumenting 44 source files with mutants
+19:23:51 (41738) DEBUG Instrumenter Instrumented src/main/components/Hotels/HotelForm.js (33 mutant(s))
+19:23:51 (41738) DEBUG Instrumenter Instrumented src/main/components/Hotels/HotelTable.js (37 mutant(s))
+19:23:51 (41738) DEBUG Instrumenter Instrumented src/main/components/Movies/MovieForm.js (33 mutant(s))
+19:23:51 (41738) DEBUG Instrumenter Instrumented src/main/components/Movies/MovieTable.js (32 mutant(s))
+19:23:51 (41738) DEBUG Instrumenter Instrumented src/main/components/Nav/AppNavbar.js (61 mutant(s))
+19:23:51 (41738) DEBUG Instrumenter Instrumented src/main/components/Nav/AppNavbarLocalhost.js (1 mutant(s))
+19:23:51 (41738) DEBUG Instrumenter Instrumented src/main/components/Nav/Footer.js (1 mutant(s))
+19:23:51 (41738) DEBUG Instrumenter Instrumented src/main/components/OurTable.js (20 mutant(s))
+19:23:51 (41738) DEBUG Instrumenter Instrumented src/main/components/Profile/RoleBadge.js (7 mutant(s))
+19:23:51 (41738) DEBUG Instrumenter Instrumented src/main/components/Restaurants/RestaurantForm.js (28 mutant(s))
+19:23:51 (41738) DEBUG Instrumenter Instrumented src/main/components/Restaurants/RestaurantTable.js (29 mutant(s))
+19:23:51 (41738) DEBUG Instrumenter Instrumented src/main/components/UCSBDates/UCSBDateForm.js (85 mutant(s))
+19:23:51 (41738) DEBUG Instrumenter Instrumented src/main/components/UCSBDates/UCSBDatesTable.js (35 mutant(s))
+19:23:51 (41738) DEBUG Instrumenter Instrumented src/main/components/Users/UsersTable.js (19 mutant(s))
+19:23:52 (41738) DEBUG Instrumenter Instrumented src/main/layouts/BasicLayout/BasicLayout.js (1 mutant(s))
+19:23:52 (41738) DEBUG Instrumenter Instrumented src/main/pages/AdminUsersPage.js (7 mutant(s))
+19:23:52 (41738) DEBUG Instrumenter Instrumented src/main/pages/HomePage.js (1 mutant(s))
+19:23:52 (41738) DEBUG Instrumenter Instrumented src/main/pages/Hotels/HotelCreatePage.js (15 mutant(s))
+19:23:52 (41738) DEBUG Instrumenter Instrumented src/main/pages/Hotels/HotelDetailsPage.js (12 mutant(s))
+19:23:52 (41738) DEBUG Instrumenter Instrumented src/main/pages/Hotels/HotelEditPage.js (25 mutant(s))
+19:23:52 (41738) DEBUG Instrumenter Instrumented src/main/pages/Hotels/HotelIndexPage.js (9 mutant(s))
+19:23:52 (41738) DEBUG Instrumenter Instrumented src/main/pages/Movies/MovieCreatePage.js (4 mutant(s))
+19:23:52 (41738) DEBUG Instrumenter Instrumented src/main/pages/Movies/MovieDetailsPage.js (3 mutant(s))
+19:23:52 (41738) DEBUG Instrumenter Instrumented src/main/pages/Movies/MovieEditPage.js (5 mutant(s))
+19:23:52 (41738) DEBUG Instrumenter Instrumented src/main/pages/Movies/MovieIndexPage.js (7 mutant(s))
+19:23:52 (41738) DEBUG Instrumenter Instrumented src/main/pages/ProfilePage.js (8 mutant(s))
+19:23:52 (41738) DEBUG Instrumenter Instrumented src/main/pages/Restaurants/RestaurantCreatePage.js (4 mutant(s))
+19:23:52 (41738) DEBUG Instrumenter Instrumented src/main/pages/Restaurants/RestaurantDetailsPage.js (3 mutant(s))
+19:23:52 (41738) DEBUG Instrumenter Instrumented src/main/pages/Restaurants/RestaurantEditPage.js (5 mutant(s))
+19:23:52 (41738) DEBUG Instrumenter Instrumented src/main/pages/Restaurants/RestaurantIndexPage.js (7 mutant(s))
+19:23:52 (41738) DEBUG Instrumenter Instrumented src/main/pages/Todos/TodosCreatePage.js (1 mutant(s))
+19:23:52 (41738) DEBUG Instrumenter Instrumented src/main/pages/Todos/TodosEditPage.js (1 mutant(s))
+19:23:52 (41738) DEBUG Instrumenter Instrumented src/main/pages/Todos/TodosIndexPage.js (1 mutant(s))
+19:23:52 (41738) DEBUG Instrumenter Instrumented src/main/pages/UCSBDates/UCSBDatesCreatePage.js (15 mutant(s))
+19:23:52 (41738) DEBUG Instrumenter Instrumented src/main/pages/UCSBDates/UCSBDatesEditPage.js (25 mutant(s))
+19:23:52 (41738) DEBUG Instrumenter Instrumented src/main/pages/UCSBDates/UCSBDatesIndexPage.js (7 mutant(s))
+19:23:52 (41738) DEBUG Instrumenter Instrumented src/main/utils/UCSBDateUtils.js (6 mutant(s))
+19:23:52 (41738) DEBUG Instrumenter Instrumented src/main/utils/arrayUtils.js (2 mutant(s))
+19:23:52 (41738) DEBUG Instrumenter Instrumented src/main/utils/currentUser.js (49 mutant(s))
+19:23:52 (41738) DEBUG Instrumenter Instrumented src/main/utils/hotelUtils.js (6 mutant(s))
+19:23:52 (41738) DEBUG Instrumenter Instrumented src/main/utils/movieUtils.js (71 mutant(s))
+19:23:52 (41738) DEBUG Instrumenter Instrumented src/main/utils/restaurantUtils.js (71 mutant(s))
+19:23:52 (41738) DEBUG Instrumenter Instrumented src/main/utils/systemInfo.js (15 mutant(s))
+19:23:52 (41738) DEBUG Instrumenter Instrumented src/main/utils/useBackend.js (22 mutant(s))
+19:23:52 (41738) INFO Instrumenter Instrumented 44 source file(s) with 829 mutant(s)
+19:23:53 (41738) INFO ConcurrencyTokenProvider Creating 4 test runner process(es).
+19:23:53 (41738) DEBUG ChildProcessProxy Started CheckerWorker in worker process 0 with pid 41750 
+19:23:53 (41750) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+19:23:53 (41750) DEBUG PluginLoader Loading plugin file:///Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+19:23:53 (41738) DEBUG Sandbox Creating a sandbox for files in /Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179
+19:23:53 (41738) DEBUG Sandbox Start symlink node_modules
+19:23:54 (41738) DEBUG Sandbox Create symlink from /Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules to /Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/node_modules
+19:23:54 (41738) DEBUG BroadcastReporter Broadcasting to reporters ["progress","clear-text","html"]
+19:23:54 (41738) DEBUG ChildProcessProxy Started ChildProcessTestRunnerWorker in worker process 0 with pid 41766 
+19:23:54 (41738) DEBUG ChildProcessProxy Started ChildProcessTestRunnerWorker in worker process 1 with pid 41767 
+19:23:54 (41766) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+19:23:54 (41766) DEBUG PluginLoader Loading plugin file:///Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+19:23:54 (41767) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+19:23:54 (41767) DEBUG PluginLoader Loading plugin file:///Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+19:23:55 (41766) DEBUG ChildProcessProxyWorker Changing current working directory for this process to /Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179
+19:23:55 (41767) DEBUG ChildProcessProxyWorker Changing current working directory for this process to /Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179
+19:23:55 (41766) DEBUG jestTestAdapterFactory Detected Jest version 27.5.1
+19:23:55 (41766) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+19:23:55 (41766) DEBUG JestTestRunner Merging file-based config {
+  "roots": [
+    "<rootDir>/src"
+  ],
+  "collectCoverageFrom": [
+    "src/main/**/*.{js,jsx,ts,tsx}"
+  ],
+  "setupFiles": [
+    "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/react-app-polyfill/jsdom.js"
+  ],
+  "setupFilesAfterEnv": [
+    "<rootDir>/src/setupTests.js"
+  ],
+  "testMatch": [
+    "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+    "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+  ],
+  "testEnvironment": "jsdom",
+  "transform": {
+    "^.+\\.(js|jsx|mjs|cjs|ts|tsx)$": "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/react-scripts/config/jest/babelTransform.js",
+    "^.+\\.css$": "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/react-scripts/config/jest/cssTransform.js",
+    "^(?!.*\\.(js|jsx|mjs|cjs|ts|tsx|css|json)$)": "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/react-scripts/config/jest/fileTransform.js"
+  },
+  "transformIgnorePatterns": [
+    "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$",
+    "^.+\\.module\\.(css|sass|scss)$"
+  ],
+  "modulePaths": [
+    "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src"
+  ],
+  "moduleNameMapper": {
+    "^react-native$": "react-native-web",
+    "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+  },
+  "moduleFileExtensions": [
+    "web.js",
+    "js",
+    "web.ts",
+    "ts",
+    "web.tsx",
+    "tsx",
+    "json",
+    "web.jsx",
+    "jsx",
+    "node"
+  ],
+  "watchPlugins": [
+    "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/jest-watch-typeahead/build/file_name_plugin/plugin.js",
+    "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/jest-watch-typeahead/build/test_name_plugin/plugin.js"
+  ],
+  "resetMocks": true,
+  "rootDir": "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179",
+  "coverageReporters": [
+    "text",
+    "lcov"
+  ],
+  "coverageThreshold": {
+    "global": {
+      "branches": 100,
+      "functions": 100,
+      "lines": 100,
+      "statements": 100
+    }
+  }
+}
+      with custom config {}
+      and default (internal) stryker config {
+  "collectCoverage": false,
+  "verbose": false,
+  "notify": false,
+  "bail": false,
+  "reporters": []
+}
+19:23:55 (41738) INFO DryRunExecutor Starting initial test run (jest test runner with "off" coverage analysis). This may take a while.
+19:23:55 (41738) DEBUG DryRunExecutor Using timeout of 300000 ms.
+19:23:55 (41738) DEBUG TimeoutDecorator Starting timeout timer (300000 ms) for a test run
+19:23:55 (41738) DEBUG ChildProcessProxy Started ChildProcessTestRunnerWorker in worker process 2 with pid 41768 
+19:23:55 (41767) DEBUG jestTestAdapterFactory Detected Jest version 27.5.1
+19:23:55 (41767) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+19:23:55 (41766) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/components/Hotels/HotelForm.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/components/Hotels/HotelTable.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/components/Movies/MovieForm.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/components/Movies/MovieTable.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/components/Nav/AppNavbar.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/components/Nav/AppNavbarLocalhost.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/components/Nav/Footer.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/components/OurTable.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/components/Profile/RoleBadge.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/components/Restaurants/RestaurantForm.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/components/Restaurants/RestaurantTable.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/components/UCSBDates/UCSBDateForm.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/components/UCSBDates/UCSBDatesTable.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/components/Users/UsersTable.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/layouts/BasicLayout/BasicLayout.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/pages/AdminUsersPage.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/pages/HomePage.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/pages/Hotels/HotelCreatePage.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/pages/Hotels/HotelDetailsPage.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/pages/Hotels/HotelEditPage.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/pages/Hotels/HotelIndexPage.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/pages/Movies/MovieCreatePage.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/pages/Movies/MovieDetailsPage.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/pages/Movies/MovieEditPage.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/pages/Movies/MovieIndexPage.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/pages/ProfilePage.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/pages/Restaurants/RestaurantCreatePage.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/pages/Restaurants/RestaurantDetailsPage.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/pages/Restaurants/RestaurantEditPage.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/pages/Restaurants/RestaurantIndexPage.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/pages/Todos/TodosCreatePage.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/pages/Todos/TodosEditPage.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/pages/Todos/TodosIndexPage.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/pages/UCSBDates/UCSBDatesCreatePage.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/pages/UCSBDates/UCSBDatesEditPage.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/pages/UCSBDates/UCSBDatesIndexPage.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/utils/UCSBDateUtils.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/utils/arrayUtils.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/utils/currentUser.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/utils/hotelUtils.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/utils/movieUtils.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/utils/restaurantUtils.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/utils/systemInfo.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/utils/useBackend.js"],"jestConfig":{"roots":["<rootDir>/src","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/components/Hotels","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/components/Movies","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/components/Nav","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/components","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/components/Profile","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/components/Restaurants","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/components/UCSBDates","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/components/Users","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/layouts/BasicLayout","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/pages","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/pages/Hotels","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/pages/Movies","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/pages/Restaurants","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/pages/Todos","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/pages/UCSBDates","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src/main/utils"],"collectCoverageFrom":["src/main/**/*.{js,jsx,ts,tsx}"],"setupFiles":["/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/react-app-polyfill/jsdom.js"],"setupFilesAfterEnv":["<rootDir>/src/setupTests.js"],"testMatch":["<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}","<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"],"testEnvironment":"jsdom","transform":{"^.+\\.(js|jsx|mjs|cjs|ts|tsx)$":"/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/react-scripts/config/jest/babelTransform.js","^.+\\.css$":"/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/react-scripts/config/jest/cssTransform.js","^(?!.*\\.(js|jsx|mjs|cjs|ts|tsx|css|json)$)":"/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/react-scripts/config/jest/fileTransform.js"},"transformIgnorePatterns":["[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$","^.+\\.module\\.(css|sass|scss)$"],"modulePaths":["/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src"],"moduleNameMapper":{"^react-native$":"react-native-web","^.+\\.module\\.(css|sass|scss)$":"identity-obj-proxy"},"moduleFileExtensions":["web.js","js","web.ts","ts","web.tsx","tsx","json","web.jsx","jsx","node"],"watchPlugins":["/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/jest-watch-typeahead/build/file_name_plugin/plugin.js","/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/jest-watch-typeahead/build/test_name_plugin/plugin.js"],"resetMocks":true,"rootDir":"/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179","coverageReporters":["text","lcov"],"coverageThreshold":{"global":{"branches":100,"functions":100,"lines":100,"statements":100}},"collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"}},"testLocationInResults":true}
+19:23:55 (41767) DEBUG JestTestRunner Merging file-based config {
+  "roots": [
+    "<rootDir>/src"
+  ],
+  "collectCoverageFrom": [
+    "src/main/**/*.{js,jsx,ts,tsx}"
+  ],
+  "setupFiles": [
+    "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/react-app-polyfill/jsdom.js"
+  ],
+  "setupFilesAfterEnv": [
+    "<rootDir>/src/setupTests.js"
+  ],
+  "testMatch": [
+    "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+    "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+  ],
+  "testEnvironment": "jsdom",
+  "transform": {
+    "^.+\\.(js|jsx|mjs|cjs|ts|tsx)$": "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/react-scripts/config/jest/babelTransform.js",
+    "^.+\\.css$": "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/react-scripts/config/jest/cssTransform.js",
+    "^(?!.*\\.(js|jsx|mjs|cjs|ts|tsx|css|json)$)": "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/react-scripts/config/jest/fileTransform.js"
+  },
+  "transformIgnorePatterns": [
+    "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$",
+    "^.+\\.module\\.(css|sass|scss)$"
+  ],
+  "modulePaths": [
+    "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src"
+  ],
+  "moduleNameMapper": {
+    "^react-native$": "react-native-web",
+    "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+  },
+  "moduleFileExtensions": [
+    "web.js",
+    "js",
+    "web.ts",
+    "ts",
+    "web.tsx",
+    "tsx",
+    "json",
+    "web.jsx",
+    "jsx",
+    "node"
+  ],
+  "watchPlugins": [
+    "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/jest-watch-typeahead/build/file_name_plugin/plugin.js",
+    "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/jest-watch-typeahead/build/test_name_plugin/plugin.js"
+  ],
+  "resetMocks": true,
+  "rootDir": "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179",
+  "coverageReporters": [
+    "text",
+    "lcov"
+  ],
+  "coverageThreshold": {
+    "global": {
+      "branches": 100,
+      "functions": 100,
+      "lines": 100,
+      "statements": 100
+    }
+  }
+}
+      with custom config {}
+      and default (internal) stryker config {
+  "collectCoverage": false,
+  "verbose": false,
+  "notify": false,
+  "bail": false,
+  "reporters": []
+}
+19:23:55 (41738) DEBUG ChildProcessProxy Started ChildProcessTestRunnerWorker in worker process 3 with pid 41769 
+19:23:56 (41768) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+19:23:56 (41768) DEBUG PluginLoader Loading plugin file:///Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+19:23:56 (41769) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+19:23:56 (41769) DEBUG PluginLoader Loading plugin file:///Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+19:23:56 (41768) DEBUG ChildProcessProxyWorker Changing current working directory for this process to /Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179
+19:23:57 (41769) DEBUG ChildProcessProxyWorker Changing current working directory for this process to /Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179
+19:23:57 (41768) DEBUG jestTestAdapterFactory Detected Jest version 27.5.1
+19:23:57 (41768) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+19:23:57 (41768) DEBUG JestTestRunner Merging file-based config {
+  "roots": [
+    "<rootDir>/src"
+  ],
+  "collectCoverageFrom": [
+    "src/main/**/*.{js,jsx,ts,tsx}"
+  ],
+  "setupFiles": [
+    "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/react-app-polyfill/jsdom.js"
+  ],
+  "setupFilesAfterEnv": [
+    "<rootDir>/src/setupTests.js"
+  ],
+  "testMatch": [
+    "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+    "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+  ],
+  "testEnvironment": "jsdom",
+  "transform": {
+    "^.+\\.(js|jsx|mjs|cjs|ts|tsx)$": "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/react-scripts/config/jest/babelTransform.js",
+    "^.+\\.css$": "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/react-scripts/config/jest/cssTransform.js",
+    "^(?!.*\\.(js|jsx|mjs|cjs|ts|tsx|css|json)$)": "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/react-scripts/config/jest/fileTransform.js"
+  },
+  "transformIgnorePatterns": [
+    "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$",
+    "^.+\\.module\\.(css|sass|scss)$"
+  ],
+  "modulePaths": [
+    "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src"
+  ],
+  "moduleNameMapper": {
+    "^react-native$": "react-native-web",
+    "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+  },
+  "moduleFileExtensions": [
+    "web.js",
+    "js",
+    "web.ts",
+    "ts",
+    "web.tsx",
+    "tsx",
+    "json",
+    "web.jsx",
+    "jsx",
+    "node"
+  ],
+  "watchPlugins": [
+    "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/jest-watch-typeahead/build/file_name_plugin/plugin.js",
+    "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/jest-watch-typeahead/build/test_name_plugin/plugin.js"
+  ],
+  "resetMocks": true,
+  "rootDir": "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179",
+  "coverageReporters": [
+    "text",
+    "lcov"
+  ],
+  "coverageThreshold": {
+    "global": {
+      "branches": 100,
+      "functions": 100,
+      "lines": 100,
+      "statements": 100
+    }
+  }
+}
+      with custom config {}
+      and default (internal) stryker config {
+  "collectCoverage": false,
+  "verbose": false,
+  "notify": false,
+  "bail": false,
+  "reporters": []
+}
+19:23:57 (41769) DEBUG jestTestAdapterFactory Detected Jest version 27.5.1
+19:23:57 (41769) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+19:23:57 (41769) DEBUG JestTestRunner Merging file-based config {
+  "roots": [
+    "<rootDir>/src"
+  ],
+  "collectCoverageFrom": [
+    "src/main/**/*.{js,jsx,ts,tsx}"
+  ],
+  "setupFiles": [
+    "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/react-app-polyfill/jsdom.js"
+  ],
+  "setupFilesAfterEnv": [
+    "<rootDir>/src/setupTests.js"
+  ],
+  "testMatch": [
+    "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+    "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+  ],
+  "testEnvironment": "jsdom",
+  "transform": {
+    "^.+\\.(js|jsx|mjs|cjs|ts|tsx)$": "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/react-scripts/config/jest/babelTransform.js",
+    "^.+\\.css$": "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/react-scripts/config/jest/cssTransform.js",
+    "^(?!.*\\.(js|jsx|mjs|cjs|ts|tsx|css|json)$)": "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/react-scripts/config/jest/fileTransform.js"
+  },
+  "transformIgnorePatterns": [
+    "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$",
+    "^.+\\.module\\.(css|sass|scss)$"
+  ],
+  "modulePaths": [
+    "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179/src"
+  ],
+  "moduleNameMapper": {
+    "^react-native$": "react-native-web",
+    "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+  },
+  "moduleFileExtensions": [
+    "web.js",
+    "js",
+    "web.ts",
+    "ts",
+    "web.tsx",
+    "tsx",
+    "json",
+    "web.jsx",
+    "jsx",
+    "node"
+  ],
+  "watchPlugins": [
+    "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/jest-watch-typeahead/build/file_name_plugin/plugin.js",
+    "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/node_modules/jest-watch-typeahead/build/test_name_plugin/plugin.js"
+  ],
+  "resetMocks": true,
+  "rootDir": "/Users/kaiwentang/CS156/team03-s23-7pm-4/frontend/.stryker-tmp/sandbox1122179",
+  "coverageReporters": [
+    "text",
+    "lcov"
+  ],
+  "coverageThreshold": {
+    "global": {
+      "branches": 100,
+      "functions": 100,
+      "lines": 100,
+      "statements": 100
+    }
+  }
+}
+      with custom config {}
+      and default (internal) stryker config {
+  "collectCoverage": false,
+  "verbose": false,
+  "notify": false,
+  "bail": false,
+  "reporters": []
+}
