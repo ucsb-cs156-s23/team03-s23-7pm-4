@@ -88,7 +88,7 @@ describe("MovieDetailsPage tests", () => {
         );
 
         expect(screen.getByText("Spiderman")).toBeInTheDocument();
-        expect(screen.getByText("2002s")).toBeInTheDocument();
+        expect(screen.getByText("2002")).toBeInTheDocument();
         expect(screen.getByText("Peter Parker gets bitten by a spider")).toBeInTheDocument();
 
         const deleteButton = getByTestId(`${testId}-cell-row-0-col-Delete-button`);
@@ -96,7 +96,7 @@ describe("MovieDetailsPage tests", () => {
 
         const editButton = getByTestId(`${testId}-cell-row-0-col-Edit-button`);
         expect(editButton).toBeInTheDocument();
-        
+
         const detailsButton = getByTestId(`${testId}-cell-row-0-col-Details-button`);
         expect(detailsButton).toBeInTheDocument();
     });
