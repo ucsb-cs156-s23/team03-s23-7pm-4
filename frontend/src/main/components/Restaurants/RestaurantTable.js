@@ -5,7 +5,7 @@ import { cellToAxiosParamsDelete, onDeleteSuccess } from "main/utils/restaurantU
 import { useNavigate } from "react-router-dom";
 import { hasRole } from "main/utils/currentUser";
 
-export default function RestaurantTable({ restaurants, currentUser}) {
+export default function RestaurantTable({ restaurants, currentUser, showButtons = true}) {
 
     const navigate = useNavigate();
 
@@ -48,11 +48,13 @@ export default function RestaurantTable({ restaurants, currentUser}) {
         }
     ];
 
-    if (hasRole(currentUser, "ROLE_ADMIN")) {
-        columns.push(ButtonColumn("Edit", "primary", editCallback, "RestaurantTable"));
-        columns.push(ButtonColumn("Delete", "danger", deleteCallback, "RestaurantTable"));
-    } 
-    columns.push(ButtonColumn("Details", "primary", detailsCallback, "RestaurantTable"));
+    if (showButtons){
+        if (hasRole(currentUser, "ROLE_ADMIN")) {
+            columns.push(ButtonColumn("Edit", "primary", editCallback, "RestaurantTable"));
+            columns.push(ButtonColumn("Delete", "danger", deleteCallback, "RestaurantTable"));
+        } 
+        columns.push(ButtonColumn("Details", "primary", detailsCallback, "RestaurantTable"));
+    }
 
     // Stryker disable next-line ArrayDeclaration : [columns] is a performance optimization
     const memoizedColumns = React.useMemo(() => columns, [columns]);
