@@ -91,13 +91,8 @@ describe("MovieDetailsPage tests", () => {
         expect(screen.getByText("2002")).toBeInTheDocument();
         expect(screen.getByText("Peter Parker gets bitten by a spider")).toBeInTheDocument();
 
-        const deleteButton = getByTestId(`${testId}-cell-row-0-col-Delete-button`);
-        expect(deleteButton).toBeInTheDocument();
-
-        const editButton = getByTestId(`${testId}-cell-row-0-col-Edit-button`);
-        expect(editButton).toBeInTheDocument();
-
-        const detailsButton = getByTestId(`${testId}-cell-row-0-col-Details-button`);
-        expect(detailsButton).toBeInTheDocument();
+        expect(screen.queryByText("Delete")).not.toBeInTheDocument();
+        expect(screen.queryByText("Edit")).not.toBeInTheDocument();
+        expect(screen.queryByText("Details")).not.toBeInTheDocument();
     });
 });

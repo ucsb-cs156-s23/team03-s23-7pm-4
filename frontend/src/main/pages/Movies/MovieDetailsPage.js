@@ -26,7 +26,9 @@ export default function MovieDetailsPage() {
       <BasicLayout>
         <div className="pt-2">
           <h1>Movie Details</h1>
-          <MovieTable movies={[movie || {}]} currentUser={currentUser}/>
+          {
+            movie && <MovieTable movies={[movie]} currentUser={currentUser} showButtons={false} />
+          }
       </div>
     </BasicLayout>
   )

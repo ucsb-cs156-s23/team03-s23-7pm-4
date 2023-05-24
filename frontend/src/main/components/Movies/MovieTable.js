@@ -5,7 +5,7 @@ import { cellToAxiosParamsDelete, onDeleteSuccess } from "main/utils/movieUtils"
 import { useNavigate } from "react-router-dom";
 import { hasRole } from "main/utils/currentUser";
 
-export default function MovieTable({ movies, currentUser }) {
+export default function MovieTable({ movies, currentUser, showButtons = true}) {
 
     const navigate = useNavigate();
 
@@ -48,11 +48,13 @@ export default function MovieTable({ movies, currentUser }) {
         }
     ];
 
-    if (hasRole(currentUser, "ROLE_ADMIN")) {
-        columns.push(ButtonColumn("Edit", "primary", editCallback, "MovieTable"));
-        columns.push(ButtonColumn("Delete", "danger", deleteCallback, "MovieTable"));
-    } 
-    columns.push(ButtonColumn("Details", "primary", detailsCallback, "MovieTable"));
+    if (showButtons){
+        if (hasRole(currentUser, "ROLE_ADMIN")) {
+            columns.push(ButtonColumn("Edit", "primary", editCallback, "MovieTable"));
+            columns.push(ButtonColumn("Delete", "danger", deleteCallback, "MovieTable"));
+        } 
+        columns.push(ButtonColumn("Details", "primary", detailsCallback, "MovieTable"));
+    }
 
     // Stryker disable next-line ArrayDeclaration : [columns] is a performance optimization
     const memoizedColumns = React.useMemo(() => columns, [columns]);
