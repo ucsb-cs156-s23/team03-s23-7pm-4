@@ -73,6 +73,22 @@ function RestaurantForm({ initialContents, submitAction, buttonLabel = "Create" 
                 </Form.Control.Feedback>
             </Form.Group>
 
+            <Form.Group className="mb-3" >
+                <Form.Label htmlFor="price">Price</Form.Label>
+                <Form.Control
+                    data-testid={testIdPrefix + "-price"}
+                    id="price"
+                    type="text"
+                    isInvalid={Boolean(errors.price)}
+                    {...register("price", {
+                        required: "Price is required."
+                    })}
+                />
+                <Form.Control.Feedback type="invalid">
+                    {errors.price?.message}
+                </Form.Control.Feedback>
+            </Form.Group>
+
 
             <Button
                 type="submit"
