@@ -58,7 +58,7 @@ public class HotelsController extends ApiController {
         @ApiParam("address") @RequestParam String address,
         @ApiParam("description") @RequestParam String description
         )
-        {
+        throws JsonProcessingException {
 
         Hotel hotel = new Hotel();
         hotel.setName(name);

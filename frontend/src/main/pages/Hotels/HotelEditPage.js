@@ -1,30 +1,70 @@
-
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import { useParams } from "react-router-dom";
-import { hotelUtils }  from 'main/utils/hotelUtils';
 import HotelForm from 'main/components/Hotels/HotelForm';
-import { useNavigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
+import { useBackend, useBackendMutation } from "main/utils/useBackend";
+import { toast } from "react-toastify";
 
 
 export default function HotelEditPage() {
     let { id } = useParams();
+  
+    const { data: hotel, error, status } =
+    useBackend(
+      // Stryker disable next-line all : don't test internal caching of React Query
+      [`/api/hotels?id=${id}`],
+      {  // Stryker disable next-line all : GET is the default, so changing this to "" doesn't introduce a bug
+        method: "GET",
+        url: `/api/hotels`,
+        params: {
+          id
+        }
+      }
+    );
 
-    let navigate = useNavigate(); 
+    const objectToAxiosPutParams = (hotel) => ({
+        url: "/api/hotels",
+        method: "PUT",
+        params: {
+          id:id
+        },
+        data: {
+          name: hotel.name,
+          address: hotel.address,
+          description: hotel.description
+        }
+      }); 
 
-    const response = hotelUtils.getById(id);
+    const onSuccess = (hotel) => {
+        toast(`Hotel Updated - id: ${hotel.id} name: ${hotel.name}`);
+    }
 
-    const onSubmit = async (hotel) => {
-        const updatedHotel = hotelUtils.update(hotel);
-        console.log("updatedHotel: " + JSON.stringify(updatedHotel));
-        navigate("/hotels");
-    }  
+    const mutation = useBackendMutation(
+        objectToAxiosPutParams,
+        { onSuccess },
+        // Stryker disable next-line all : hard to set up test for caching
+        [`/api/hotels?id=${id}`]
+      );
+
+    const { isSuccess } = mutation
+
+    const onSubmit = async (data) => {
+        mutation.mutate(data);
+    }
+    
+    if (isSuccess) {
+        return <Navigate to="/hotels/list" />
+    }
+    
 
     return (
         <BasicLayout>
             <div className="pt-2">
-                <h1>Edit Hotel</h1>
-                <HotelForm submitAction={onSubmit} buttonLabel={"Update"} initialContents={response.hotel}/>
-            </div>
+              <h1>Edit Hotel</h1>
+              {hotel &&
+                <HotelForm initialContents={hotel} submitAction={onSubmit} buttonLabel="Update" />
+              }
+        </div>
         </BasicLayout>
     )
 }

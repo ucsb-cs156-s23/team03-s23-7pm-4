@@ -16,12 +16,10 @@ import MovieDetailsPage from "main/pages/Movies/MovieDetailsPage";
 import MovieCreatePage from "main/pages/Movies/MovieCreatePage";
 import MovieEditPage from "main/pages/Movies/MovieEditPage";
 
-
 import HotelCreatePage from "main/pages/Hotels/HotelCreatePage";
 import HotelEditPage from "main/pages/Hotels/HotelEditPage";
 import HotelIndexPage from "main/pages/Hotels/HotelIndexPage";
 import HotelDetailsPage from "main/pages/Hotels/HotelDetailsPage";
-
 
 import RestaurantIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
 import RestaurantDetailsPage from "main/pages/Restaurants/RestaurantDetailsPage";
@@ -54,7 +52,7 @@ function App() {
               <Route exact path="/todos/edit/:todoId" element={<TodosEditPage />} />
 
               <Route exact path="/ucsbdates/list" element={<UCSBDatesIndexPage />} />
-              
+                
               <Route exact path="/restaurants/details/:id" element={<RestaurantDetailsPage />} />
               <Route exact path="/restaurants/list" element={<RestaurantIndexPage />} /> 
                 
@@ -73,7 +71,7 @@ function App() {
               <Route exact path="/ucsbdates/edit/:id" element={<UCSBDatesEditPage />} />
               <Route exact path="/ucsbdates/create" element={<UCSBDatesCreatePage />} />
                 
-               <Route exact path="/hotels/create" element={<HotelCreatePage />} />
+              <Route exact path="/hotels/create" element={<HotelCreatePage />} />
               <Route exact path="/hotels/edit/:id" element={<HotelEditPage />} />
  
               <Route exact path="/movies/create" element={<MovieCreatePage />} />

@@ -1,127 +1,177 @@
-import { render, screen, act, waitFor, fireEvent } from "@testing-library/react";
-import HotelEditPage from "main/pages/Hotels/HotelEditPage";
+import { fireEvent, queryByTestId, render, waitFor } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
-import mockConsole from "jest-mock-console";
-import { apiCurrentUserFixtures }  from "fixtures/currentUserFixtures";
+import HotelEditPage from "main/pages/Hotels/HotelEditPage";
+
+import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
 
-const mockNavigate = jest.fn();
+import mockConsole from "jest-mock-console";
 
-jest.mock('react-router-dom', () => ({
-    ...jest.requireActual('react-router-dom'),
-    useParams: () => ({
-        id: 2
-    }),
-    useNavigate: () => mockNavigate
-}));
-
-const mockUpdate = jest.fn();
-jest.mock('main/utils/hotelUtils', () => {
+const mockToast = jest.fn();
+jest.mock('react-toastify', () => {
+    const originalModule = jest.requireActual('react-toastify');
     return {
         __esModule: true,
-        hotelUtils: {
-            update: (_hotel) => {return mockUpdate();},
-            getById: (_id) => {
-                return {
-                    hotel: {
-                        id: 2,
-                        name: "Riviera Beach House",
-                        address:"121 State St, Santa Barbara, CA 93101",
-                        description: "Set in a trendy Funk Zone neighborhood, this chic adobe-style hotel with views of the Santa Ynez Mountains is a 4-minute walk from Stearns Wharf"
-                    }
-                }
-            }
-        }
-    }
+        ...originalModule,
+        toast: (x) => mockToast(x)
+    };
 });
 
+const mockNavigate = jest.fn();
+jest.mock('react-router-dom', () => {
+    const originalModule = jest.requireActual('react-router-dom');
+    return {
+        __esModule: true,
+        ...originalModule,
+        useParams: () => ({
+            id: 17
+        }),
+        Navigate: (x) => { mockNavigate(x); return null; }
+    };
+});
 
 describe("HotelEditPage tests", () => {
-    const axiosMock =new AxiosMockAdapter(axios);
-    axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
-    axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither); 
-    
-    const queryClient = new QueryClient();
-    test("renders without crashing", () => {
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter>
-                    <HotelEditPage />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
-    });
 
-    test("loads the correct fields", async () => {
+    describe("when the backend doesn't return a todo", () => {
 
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter>
-                    <HotelEditPage />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
+        const axiosMock = new AxiosMockAdapter(axios);
 
-        expect(screen.getByTestId("HotelForm-name")).toBeInTheDocument();
-        expect(screen.getByDisplayValue('Riviera Beach House')).toBeInTheDocument();
-        expect(screen.getByDisplayValue('121 State St, Santa Barbara, CA 93101')).toBeInTheDocument();
-        expect(screen.getByDisplayValue('Set in a trendy Funk Zone neighborhood, this chic adobe-style hotel with views of the Santa Ynez Mountains is a 4-minute walk from Stearns Wharf')).toBeInTheDocument();
-    });
-
-    test("redirects to /hotels on submit", async () => {
-
-        const restoreConsole = mockConsole();
-
-        mockUpdate.mockReturnValue({
-            "hotel": {
-                id: 2,
-                name: "Best Western Plus",
-                address: "5620 Calle Real, Goleta, CA 93117",
-                description: "Off Highway 101 and set in landscaped gardens, this down-to-earth hotel is 2.5 miles from Santa Barbara Airport"
-            }
+        beforeEach(() => {
+            axiosMock.reset();
+            axiosMock.resetHistory();
+            axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
+            axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
+            axiosMock.onGet("/api/hotels", { params: { id: 17 } }).timeout();
         });
 
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter>
-                    <HotelEditPage />
-                </MemoryRouter>
-            </QueryClientProvider>
-        )
+        const queryClient = new QueryClient();
+        test("renders header but table is not present", async () => {
 
-        const nameInput = screen.getByLabelText("Name");
-        expect(nameInput).toBeInTheDocument();
+            const restoreConsole = mockConsole();
 
-        const addressInput = screen.getByLabelText("Address");
-        expect(addressInput).toBeInTheDocument();
-
-        const descriptionInput = screen.getByLabelText("Description");
-        expect(descriptionInput).toBeInTheDocument();
-
-        const updateButton = screen.getByText("Update");
-        expect(updateButton).toBeInTheDocument();
-
-        await act(async () => {
-            fireEvent.change(nameInput, { target: { value: 'Best Western Plus' } })
-            fireEvent.change(addressInput, { target: { value: '5620 Calle Real, Goleta, CA 93117' } })
-            fireEvent.change(descriptionInput, { target: { value: 'Off Highway 101 and set in landscaped gardens, this down-to-earth hotel is 2.5 miles from Santa Barbara Airport' } })
-            fireEvent.click(updateButton);
+            const {getByText, queryByTestId, findByText} = render(
+                <QueryClientProvider client={queryClient}>
+                    <MemoryRouter>
+                        <HotelEditPage />
+                    </MemoryRouter>
+                </QueryClientProvider>
+            );
+            await findByText("Edit Hotel");
+            expect(queryByTestId("HotelForm-name")).not.toBeInTheDocument();
+            restoreConsole();
         });
-
-        await waitFor(() => expect(mockUpdate).toHaveBeenCalled());
-        await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/hotels"));
-
-        // assert - check that the console.log was called with the expected message
-        expect(console.log).toHaveBeenCalled();
-        const message = console.log.mock.calls[0][0];
-        const expectedMessage =  `updatedHotel: {"hotel":{"id":2,"name":"Best Western Plus","address":"5620 Calle Real, Goleta, CA 93117","description":"Off Highway 101 and set in landscaped gardens, this down-to-earth hotel is 2.5 miles from Santa Barbara Airport"}`
-
-        expect(message).toMatch(expectedMessage);
-        restoreConsole();
-
     });
 
+    describe("tests where backend is working normally", () => {
+
+        const axiosMock = new AxiosMockAdapter(axios);
+
+        beforeEach(() => {
+            axiosMock.reset();
+            axiosMock.resetHistory();
+            axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
+            axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
+            axiosMock.onGet("/api/hotels", { params: { id: 17 } }).reply(200, {
+                id: 17,
+                name: "Riviera Beach House",
+                address: "121 State St, Santa Barbara, CA 93101",
+                description: "Set in a trendy Funk Zone neighborhood, this chic adobe-style hotel with views of the Santa Ynez Mountains is a 4-minute walk from Stearns Wharf"    
+            });
+            axiosMock.onPut('/api/hotels').reply(200, {
+                id: "17",
+                name: "The Leta Hotel",
+                address: "5650 Calle Real, Goleta, CA 93117",
+                description: "hotel's rooms feature an eclectic mix of textures and textiles, accented by dashes of nostalgia like mid-mod furnishings."     
+            });
+        });
+
+        const queryClient = new QueryClient();
+        test("renders without crashing", () => {
+            render(
+                <QueryClientProvider client={queryClient}>
+                    <MemoryRouter>
+                        <HotelEditPage />
+                    </MemoryRouter>
+                </QueryClientProvider>
+            );
+        });
+
+        test("Is populated with the data provided", async () => {
+
+            const { getByTestId, findByTestId } = render(
+                <QueryClientProvider client={queryClient}>
+                    <MemoryRouter>
+                        <HotelEditPage />
+                    </MemoryRouter>
+                </QueryClientProvider>
+            );
+
+            await findByTestId("HotelForm-name");
+
+            const idField = getByTestId("HotelForm-id");
+            const nameField = getByTestId("HotelForm-name");
+            const addressField = getByTestId("HotelForm-address");
+            const descriptionField = getByTestId("HotelForm-description");
+            const submitButton = getByTestId("HotelForm-submit");
+
+            expect(idField).toHaveValue("17");
+            expect(nameField).toHaveValue("Riviera Beach House");
+            expect(addressField).toHaveValue("121 State St, Santa Barbara, CA 93101");
+            expect(descriptionField).toHaveValue("Set in a trendy Funk Zone neighborhood, this chic adobe-style hotel with views of the Santa Ynez Mountains is a 4-minute walk from Stearns Wharf");
+        });
+
+        test("Changes when you click Update", async () => {
+
+
+
+            const { getByTestId, findByTestId } = render(
+                <QueryClientProvider client={queryClient}>
+                    <MemoryRouter>
+                        <HotelEditPage />
+                    </MemoryRouter>
+                </QueryClientProvider>
+            );
+
+            await findByTestId("HotelForm-name");
+
+            const idField = getByTestId("HotelForm-id");
+            const nameField = getByTestId("HotelForm-name");
+            const addressField = getByTestId("HotelForm-address");
+            const descriptionField = getByTestId("HotelForm-description");
+            const submitButton = getByTestId("HotelForm-submit");
+
+            expect(idField).toHaveValue("17");
+            expect(nameField).toHaveValue("Riviera Beach House");
+            expect(addressField).toHaveValue("121 State St, Santa Barbara, CA 93101");
+            expect(descriptionField).toHaveValue("Set in a trendy Funk Zone neighborhood, this chic adobe-style hotel with views of the Santa Ynez Mountains is a 4-minute walk from Stearns Wharf");
+
+            expect(submitButton).toBeInTheDocument();
+
+            fireEvent.change(nameField, { target: { value: 'The Leta Hotel' } })
+            fireEvent.change(addressField, { target: { value: '5650 Calle Real, Goleta, CA 93117' } })
+            fireEvent.change(descriptionField, { target: { value: "hotel's rooms feature an eclectic mix of textures and textiles, accented by dashes of nostalgia like mid-mod furnishings." } })
+
+            fireEvent.click(submitButton);
+
+            await waitFor(() => expect(mockToast).toBeCalled);
+            expect(mockToast).toBeCalledWith("Hotel Updated - id: 17 name: The Leta Hotel");
+            expect(mockNavigate).toBeCalledWith({ "to": "/hotels/list" });
+
+            expect(axiosMock.history.put.length).toBe(1); // times called
+            expect(axiosMock.history.put[0].params).toEqual({ id: 17 });
+            expect(axiosMock.history.put[0].data).toBe(JSON.stringify({
+                name: 'The Leta Hotel',
+                address: "5650 Calle Real, Goleta, CA 93117",
+                description: "hotel's rooms feature an eclectic mix of textures and textiles, accented by dashes of nostalgia like mid-mod furnishings."
+            })); // posted object
+
+        });
+
+       
+    });
 });
+
+
