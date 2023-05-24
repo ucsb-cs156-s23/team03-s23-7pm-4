@@ -167,5 +167,3 @@ describe("RestaurantIndexPage tests", () => {
     });
 
 });
-
-
