@@ -27,8 +27,12 @@ export default function RestaurantDetailsPage() {
     <BasicLayout>
       <div className="pt-2">
         <h1>Restaurant Details</h1>
-        <RestaurantTable restaurants={[restaurant || {}]} currentUser={currentUser}/>
+        {
+          restaurant && <RestaurantTable restaurants={[restaurant]} currentUser={currentUser} showButtons={false} />
+        }
       </div>
     </BasicLayout>
   )
 }
+
+
