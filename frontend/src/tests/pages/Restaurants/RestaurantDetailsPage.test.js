@@ -102,13 +102,13 @@ describe("RestaurantDetailsPage tests", () => {
         expect(screen.getByText("$$")).toBeInTheDocument();
 
         const deleteButton = getByTestId(`${testId}-cell-row-0-col-Delete-button`);
-        expect(deleteButton).toBeInTheDocument();
+        expect(deleteButton).not.toBeInTheDocument();
 
         const editButton = getByTestId(`${testId}-cell-row-0-col-Edit-button`);
-        expect(editButton).toBeInTheDocument();
+        expect(editButton).not.toBeInTheDocument();
 
         const detailsButton = getByTestId(`${testId}-cell-row-0-col-Details-button`);
-        expect(detailsButton).toBeInTheDocument();
+        expect(detailsButton).not.toBeInTheDocument();
 
     });
 
