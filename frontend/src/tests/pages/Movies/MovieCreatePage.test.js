@@ -1,37 +1,46 @@
-import { render, screen, fireEvent, act, waitFor } from "@testing-library/react";
+import { render, waitFor, fireEvent } from "@testing-library/react";
 import MovieCreatePage from "main/pages/Movies/MovieCreatePage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
-import mockConsole from "jest-mock-console";
-import { apiCurrentUserFixtures }  from "fixtures/currentUserFixtures";
+
+import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
 
-const mockNavigate = jest.fn();
-jest.mock('react-router-dom', () => ({
-    ...jest.requireActual('react-router-dom'),
-    useNavigate: () => mockNavigate
-}));
-
-const mockAdd = jest.fn();
-jest.mock('main/utils/movieUtils', () => {
+const mockToast = jest.fn();
+jest.mock('react-toastify', () => {
+    const originalModule = jest.requireActual('react-toastify');
     return {
         __esModule: true,
-        movieUtils: {
-            add: () => { return mockAdd(); }
-        }
-    }
+        ...originalModule,
+        toast: (x) => mockToast(x)
+    };
+});
+
+const mockNavigate = jest.fn();
+jest.mock('react-router-dom', () => {
+    const originalModule = jest.requireActual('react-router-dom');
+    return {
+        __esModule: true,
+        ...originalModule,
+        Navigate: (x) => { mockNavigate(x); return null; }
+    };
 });
 
 describe("MovieCreatePage tests", () => {
 
     const axiosMock =new AxiosMockAdapter(axios);
-    axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
-    axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither); 
 
-    const queryClient = new QueryClient();
+    beforeEach(() => {
+        axiosMock.reset();
+        axiosMock.resetHistory();
+        axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
+        axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
+    });
+
     test("renders without crashing", () => {
+        const queryClient = new QueryClient();
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
@@ -41,58 +50,56 @@ describe("MovieCreatePage tests", () => {
         );
     });
 
-    test("redirects to /movies on submit", async () => {
+    test("when you fill in the form and hit submit, it makes a request to the backend", async () => {
 
-        const restoreConsole = mockConsole();
+        const queryClient = new QueryClient();
+        const movie = {
+            id: 17,
+            name: "Spider-Man",
+            year: "2002",
+            summary: "Peter Parker gets bitten by a spider"
+        };
 
-        mockAdd.mockReturnValue({
-            "movie": {
-                id: 3,
-                name: "Jaws",
-                year: "1975",
-                summary: "Shark attacks"
-            }
-        });
+        axiosMock.onPost("/api/movies/post").reply( 202, movie );
 
-        render(
+        const { getByTestId } = render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
                     <MovieCreatePage />
                 </MemoryRouter>
             </QueryClientProvider>
-        )
+        );
 
-        const nameInput = screen.getByLabelText("Name");
-        expect(nameInput).toBeInTheDocument();
-
-        const yearInput = screen.getByLabelText("Year");
-        expect(yearInput).toBeInTheDocument();
-
-        const summaryInput = screen.getByLabelText("Summary");
-        expect(summaryInput).toBeInTheDocument();
-
-        const createButton = screen.getByText("Create");
-        expect(createButton).toBeInTheDocument();
-
-        await act(async () => {
-            fireEvent.change(nameInput, { target: { value: 'Jaws' } })
-            fireEvent.change(yearInput, { target: { value: '1975' } })
-            fireEvent.change(summaryInput, { target: { value: 'Shark attacks' } })
-            fireEvent.click(createButton);
+        await waitFor(() => {
+            expect(getByTestId("MovieForm-name")).toBeInTheDocument();
         });
 
-        await waitFor(() => expect(mockAdd).toHaveBeenCalled());
-        await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/movies/list"));
+        const nameField = getByTestId("MovieForm-name");
+        const yearField = getByTestId("MovieForm-year");
+        const summaryField = getByTestId("MovieForm-summary");
+        const submitButton = getByTestId("MovieForm-submit");
 
-        // assert - check that the console.log was called with the expected message
-        expect(console.log).toHaveBeenCalled();
-        const message = console.log.mock.calls[0][0];
-        const expectedMessage =  `createdMovie: {"movie":{"id":3,"name":"Jaws","year":"1975","summary":"Shark attacks"}`
+        fireEvent.change(nameField, { target: { value: 'Spider-Man' } });
+        fireEvent.change(yearField, { target: { value: '2002' } });
+        fireEvent.change(summaryField, { target: { value: 'Peter Parker gets bitten by a spider' } });
 
-        expect(message).toMatch(expectedMessage);
-        restoreConsole();
+        expect(submitButton).toBeInTheDocument();
 
+        fireEvent.click(submitButton);
+
+        await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
+
+        expect(axiosMock.history.post[0].params).toEqual(
+            {
+            "name": "Spider-Man",
+            "year": "2002",
+            "summary": "Peter Parker gets bitten by a spider"
+        });
+
+        expect(mockToast).toBeCalledWith("New movie Created - id: 17 name: Spider-Man");
+        expect(mockNavigate).toBeCalledWith({ "to": "/movies/list" });
     });
+
 
 });
 

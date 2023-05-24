@@ -1,34 +1,28 @@
 import React from 'react'
-import Button from 'react-bootstrap/Button';
+import { useBackend } from 'main/utils/useBackend';
+
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import MovieTable from 'main/components/Movies/MovieTable';
-import { movieUtils } from 'main/utils/movieUtils';
-import { useNavigate, Link } from 'react-router-dom';
+import { useCurrentUser } from 'main/utils/currentUser'
 
 export default function MovieIndexPage() {
 
-    const navigate = useNavigate();
+  const currentUser = useCurrentUser();
 
-    const movieCollection = movieUtils.get();
-    const movies = movieCollection.movies;
+  const { data: movies, error: _error, status: _status } =
+    useBackend(
+      // Stryker disable next-line all : don't test internal caching of React Query
+      ["/api/movies/all"],
+      { method: "GET", url: "/api/movies/all" },
+      []
+    );
 
-    const showCell = (cell) => JSON.stringify(cell.row.values);
-
-    const deleteCallback = async (cell) => {
-        console.log(`MovieIndexPage deleteCallback: ${showCell(cell)})`);
-        movieUtils.del(cell.row.values.id);
-        navigate("/movies/list");
-    }
-
-    return (
-        <BasicLayout>
-            <div className="pt-2">
-                <Button style={{ float: "right" }} as={Link} to="/movies/create">
-                    Create Movie
-                </Button>
-                <h1>Movies</h1>
-                <MovieTable movies={movies} deleteCallback={deleteCallback} />
-            </div>
-        </BasicLayout>
-    )
+  return (
+    <BasicLayout>
+      <div className="pt-2">
+        <h1>Movies</h1>
+        <MovieTable movies={movies} currentUser={currentUser} />
+      </div>
+    </BasicLayout>
+  )
 }
